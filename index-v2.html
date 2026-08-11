@@ -9,17 +9,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --leaf:#22489E;
-    --leaf-deep:#17356F;
-    --mint:#BDCDEA;
-    --mint-deep:#8EA5D0;
-    --cream:#D6CDC5;
-    --peach:#C98F7A;
-    --peach-deep:#9E5F50;
-    --ink:#22489E;
-    --ink-soft:#17356F;
-    --line:rgba(38,53,44,0.10);
+    /* Palette */
+    --leaf: #22489E;
+    --leaf-rgb: 34,72,158;
+    --leaf-deep: #17356F;
+    --leaf-deep-rgb: 23,53,111;
+
+    --mint: #BDCDEA;
+    --mint-rgb: 189,205,234;
+    --mint-deep: #8EA5D0;
+    --mint-deep-rgb: 142,165,208;
+
+    --cream: #F7F5F2;           /* updated background: Soft Ivory */
+    --cream-rgb: 247,245,242;
+
+    --peach: #C98F7A;
+    --peach-rgb: 201,143,122;
+    --peach-deep: #9E5F50;
+    --peach-deep-rgb: 158,95,80;
+
+    --peach-light: #FCE8D2;     /* pale peach used previously in a few spots */
+    --peach-light-rgb: 252,232,210;
+
+    --white: #ffffff;
+    --white-rgb: 255,255,255;
+
+    --ink: #22489E;
+    --ink-rgb: 34,72,158;
+    --ink-soft: #17356F;
+    --ink-soft-rgb: 23,53,111;
+
+    /* line uses ink with transparency for consistency */
+    --line: rgba(var(--ink-rgb), 0.10);
+
+    /* small accessory colour for CTA text on dark band */
+    --cta-text: #DCEFE2;
   }
+
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -50,7 +76,7 @@
   /* ---------- NAV ---------- */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(255,253,247,0.92);
+    background:rgba(var(--white-rgb),0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -71,12 +97,12 @@
   .nav-links a{font-size:0.95rem; font-weight:600; color:var(--ink-soft);}
   .nav-links a:hover{color:var(--leaf-deep);}
   .nav-cta{
-    background:var(--peach); color:#fff !important;
+    background:var(--peach); color:var(--white) !important;
     padding:11px 24px; border-radius:100px; font-size:0.9rem; font-weight:700;
-    box-shadow:0 4px 14px rgba(242,166,90,0.35);
+    box-shadow:0 4px 14px rgba(var(--peach-rgb),0.35);
     transition:transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .nav-cta:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(242,166,90,0.45);}
+  .nav-cta:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(var(--peach-rgb),0.45);}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -89,7 +115,7 @@
     position:absolute; border-radius:50%; filter:blur(2px); opacity:0.5; z-index:1;
   }
   .blob1{width:260px; height:260px; background:var(--mint-deep); top:-80px; left:-100px;}
-  .blob2{width:180px; height:180px; background:#FCE8D2; bottom:20px; right:-60px;}
+  .blob2{width:180px; height:180px; background:var(--peach-light); bottom:20px; right:-60px;}
   .hero h1{
     font-size:clamp(2.2rem, 4.6vw, 3.3rem); line-height:1.15; margin-bottom:20px;
   }
@@ -99,9 +125,9 @@
   }
   .hero-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
   .btn-primary{
-    background:var(--leaf-deep); color:#fff;
+    background:var(--leaf-deep); color:var(--white);
     padding:15px 30px; border-radius:100px; font-weight:700; font-size:0.98rem;
-    display:inline-block; box-shadow:0 6px 18px rgba(55,128,79,0.28);
+    display:inline-block; box-shadow:0 6px 18px rgba(var(--leaf-rgb),0.28);
     transition:transform 0.2s ease, background 0.2s ease;
   }
   .btn-primary:hover{background:var(--leaf); transform:translateY(-2px);}
@@ -116,7 +142,7 @@
   .explainer{
     background:var(--cream); border:2px solid var(--mint-deep); border-radius:28px;
     max-width:940px; margin:70px auto 0; padding:44px 40px;
-    box-shadow:0 20px 50px rgba(55,128,79,0.08);
+    box-shadow:0 20px 50px rgba(var(--leaf-rgb),0.08);
     position:relative; z-index:2;
   }
   .explainer-title{
@@ -133,8 +159,8 @@
     display:flex; align-items:center; justify-content:center; font-size:1.7rem;
   }
   .flow-icon.one{background:var(--mint-deep);}
-  .flow-icon.two{background:#FCE8D2;}
-  .flow-icon.three{background:var(--leaf-deep); color:#fff;}
+  .flow-icon.two{background:var(--peach-light);}
+  .flow-icon.three{background:var(--leaf-deep); color:var(--white);}
   .flow-step h4{font-size:0.98rem; color:var(--ink); margin-bottom:6px;}
   .flow-step p{font-size:0.84rem; color:var(--ink-soft); max-width:20ch; margin:0 auto;}
   .flow-arrow{font-size:1.4rem; color:var(--leaf); opacity:0.6;}
@@ -151,7 +177,7 @@
     background:var(--cream); border:1px solid var(--line); border-radius:24px;
     padding:38px 32px; transition:transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .service-card:hover{transform:translateY(-6px); box-shadow:0 16px 40px rgba(55,128,79,0.14);}
+  .service-card:hover{transform:translateY(-6px); box-shadow:0 16px 40px rgba(var(--leaf-rgb),0.14);}
   .service-card .icon{
     width:52px; height:52px; border-radius:16px; background:var(--mint-deep);
     display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:22px;
@@ -168,10 +194,10 @@
   .audience-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .audience-card{
     background:var(--cream); border-radius:24px; padding:38px;
-    box-shadow:0 10px 30px rgba(55,128,79,0.08);
+    box-shadow:0 10px 30px rgba(var(--leaf-rgb),0.08);
   }
   .audience-card .tag{
-    display:inline-block; padding:6px 14px; background:var(--peach); color:#fff;
+    display:inline-block; padding:6px 14px; background:var(--peach); color:var(--white);
     border-radius:100px; font-size:0.8rem; font-weight:700; margin-bottom:18px;
   }
   .audience-card h3{font-size:1.3rem; margin-bottom:12px;}
@@ -197,7 +223,7 @@
   }
   .team-avatar{
     width:64px; height:64px; border-radius:50%; margin:0 auto 18px;
-    background:var(--leaf-deep); color:#fff; display:flex; align-items:center; justify-content:center;
+    background:var(--leaf-deep); color:var(--white); display:flex; align-items:center; justify-content:center;
     font-family:'Fredoka',sans-serif; font-size:1.4rem;
   }
   .team-card h3{font-size:1.15rem; margin-bottom:4px;}
@@ -206,16 +232,16 @@
 
   /* ---------- CTA ---------- */
   .cta-band{
-    background:var(--leaf-deep); color:#fff; text-align:center;
+    background:var(--leaf-deep); color:var(--white); text-align:center;
     padding:90px 32px; border-radius:32px; max-width:1100px; margin:0 auto 90px;
   }
-  .cta-band h2{color:#fff; font-size:clamp(1.8rem,3.2vw,2.4rem); margin-bottom:16px;}
-  .cta-band p{color:#DCEFE2; max-width:48ch; margin:0 auto 32px; font-size:1.02rem;}
+  .cta-band h2{color:var(--white); font-size:clamp(1.8rem,3.2vw,2.4rem); margin-bottom:16px;}
+  .cta-band p{color:var(--cta-text); max-width:48ch; margin:0 auto 32px; font-size:1.02rem;}
   .cta-band-actions{display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
-  .cta-band .btn-primary{background:var(--peach); box-shadow:0 6px 18px rgba(0,0,0,0.15);}
+  .cta-band .btn-primary{background:var(--peach); box-shadow:0 6px 18px rgba(var(--ink-rgb),0.15);}
   .cta-band .btn-primary:hover{background:var(--peach-deep);}
-  .cta-band .btn-ghost{border-color:#fff; color:#fff;}
-  .cta-band .btn-ghost:hover{background:rgba(255,255,255,0.1);}
+  .cta-band .btn-ghost{border-color:var(--white); color:var(--white);}
+  .cta-band .btn-ghost:hover{background:rgba(var(--white-rgb),0.1);}
 
   /* ---------- FOOTER ---------- */
   footer{background:var(--mint); border-top:1px solid var(--line);} 
@@ -330,7 +356,7 @@
     <div class="faq-list">
       <div class="faq-item">
         <h4>Can I advertise on TV, radio and out-of-home screens?</h4>
-        <p>Yes! We’ll run your campaign programmatically. In simple terms, that means using a technology platform to buy ad space automatically, rather than calling every publisher and media ow[...]</p>
+        <p>Yes! We’ll run your campaign programmatically. In simple terms, that means using a technology platform to buy ad space automatically, rather than calling every publisher and media ow[...][...]</p>
       </div>
       <div class="faq-item">
         <h4>I have $5,000, can I advertise on TV?</h4>
