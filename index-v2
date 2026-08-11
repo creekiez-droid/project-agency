@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --leaf:#4FA36B;
-    --leaf-deep:#234A38;
-    --mint:#EAF6EC;
-    --mint-deep:#D3EBD9;
-    --cream:#FFFDF7;
-    --peach:#F2A65A;
-    --peach-deep:#E4903F;
-    --ink:#26352C;
-    --ink-soft:#526257;
+    --leaf:#22489E;
+    --leaf-deep:#17356F;
+    --mint:#BDCDEA;
+    --mint-deep:#8EA5D0;
+    --cream:#D6CDC5;
+    --peach:#C98F7A;
+    --peach-deep:#9E5F50;
+    --ink:#22489E;
+    --ink-soft:#17356F;
     --line:rgba(38,53,44,0.10);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -164,7 +164,7 @@
   }
 
   /* ---------- AUDIENCE ---------- */
-  .audience{background:var(--mint);}
+  .audience{background:var(--mint);} 
   .audience-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .audience-card{
     background:var(--cream); border-radius:24px; padding:38px;
@@ -178,7 +178,7 @@
   .audience-card p{color:var(--ink-soft); font-size:0.95rem;}
 
   /* ---------- FAQ / What is programmatic ---------- */
-  .faq{background:var(--cream);}
+  .faq{background:var(--cream);} 
   .faq-list{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:14px;}
   .faq-item{
     border:1px solid var(--line); border-radius:18px; padding:24px 28px; background:var(--cream);
@@ -218,7 +218,7 @@
   .cta-band .btn-ghost:hover{background:rgba(255,255,255,0.1);}
 
   /* ---------- FOOTER ---------- */
-  footer{background:var(--mint); border-top:1px solid var(--line);}
+  footer{background:var(--mint); border-top:1px solid var(--line);} 
   .footer-inner{
     padding:36px 32px; display:flex; justify-content:space-between; align-items:center;
     flex-wrap:wrap; gap:16px; max-width:1160px; margin:0 auto;
@@ -330,7 +330,7 @@
     <div class="faq-list">
       <div class="faq-item">
         <h4>Can I advertise on TV, radio and out-of-home screens?</h4>
-        <p>Yes! We’ll run your campaign programmatically. In simple terms, that means using a technology platform to buy ad space automatically, rather than calling every publisher and media owner to negotiate prices. It happens in the time it takes a webpage to load, helping us get your ads in front of people who are more likely to care about what you’re selling.</p>
+        <p>Yes! We’ll run your campaign programmatically. In simple terms, that means using a technology platform to buy ad space automatically, rather than calling every publisher and media ow[...]</p>
       </div>
       <div class="faq-item">
         <h4>I have $5,000, can I advertise on TV?</h4>
