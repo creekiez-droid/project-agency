@@ -163,25 +163,29 @@
   .quote-card .attrib .who span{display:block; opacity:0.55; font-size:0.78rem; margin-top:2px;}
 
   /* ---------- VALUES ---------- */
-  .values{background:var(--mist);}
-  .value-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:20px; overflow:hidden;}
-  .value-card{background:var(--paper); padding:38px 30px; transition:background 0.25s ease;}
-  .value-card:hover{background:var(--mist);}
-  .value-card .num{font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; color:var(--cobalt-bright); display:block; margin-bottom:24px;}
-  .value-card h3{font-size:1.12rem; margin-bottom:10px; line-height:1.25;}
-  .value-card p{color:var(--ink); opacity:0.65; font-size:0.92rem;}
+.values{background:var(--mist);}
+.value-grid{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1px;
+  background:var(--line); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  max-width:900px; margin:0 auto;
+}
+.value-card{background:var(--paper); padding:38px 30px; flex:1 1 260px; transition:background 0.25s ease;}
+.value-card:hover{background:var(--mist);}
+.value-card .num{font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; color:var(--cobalt-bright); display:block; margin-bottom:24px;}
+.value-card h3{font-size:1.12rem; margin-bottom:10px; line-height:1.25;}
+.value-card p{color:var(--ink); opacity:0.65; font-size:0.92rem;}
 
-  /* ---------- TEAM ---------- */
-  .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
-  .team-card{background:var(--paper); border:1px solid var(--line-soft); border-radius:20px; padding:34px 30px;}
-  .team-card .avatar{
-    width:56px; height:56px; border-radius:10px; background:var(--cobalt);
-    color:#fff; display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces',serif; font-weight:600; font-size:1.2rem; margin-bottom:22px;
-  }
-  .team-card h3{font-size:1.12rem; margin-bottom:3px;}
-  .team-card .role{display:block; font-size:0.82rem; color:var(--cobalt-bright); font-weight:700; margin-bottom:14px;}
-  .team-card p{color:var(--ink); opacity:0.65; font-size:0.92rem;}
+/* ---------- TEAM ---------- */
+.team-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:26px;}
+.team-card{background:var(--paper); border:1px solid var(--line-soft); border-radius:20px; padding:34px 30px; flex:0 1 340px;}
+.team-card .avatar{
+  width:56px; height:56px; border-radius:10px; background:var(--cobalt);
+  color:#fff; display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif; font-weight:600; font-size:1.2rem; margin-bottom:22px;
+}
+.team-card h3{font-size:1.12rem; margin-bottom:3px;}
+.team-card .role{display:block; font-size:0.82rem; color:var(--cobalt-bright); font-weight:700; margin-bottom:14px;}
+.team-card p{color:var(--ink); opacity:0.65; font-size:0.92rem;}
 
   /* ---------- CTA ---------- */
   .cta-band{
@@ -303,8 +307,6 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow" style="justify-content:center;">What we believe</span>
-      <h2>The principles behind every campaign</h2>
-      <p style="margin:0 auto;">These aren't wall art. They're how we actually decide what to recommend.</p>
     </div>
     <div class="value-grid">
       <div class="value-card">
