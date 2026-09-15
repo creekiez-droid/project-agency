@@ -564,36 +564,34 @@
   const prev = document.getElementById('servicePrev');
   const next = document.getElementById('serviceNext');
   let index = 0;
- 
+
   cards.forEach((_, i) => {
     const b = document.createElement('button');
     b.type = 'button';
     b.setAttribute('aria-label', 'Go to service ' + (i + 1));
-    b.addEventListener('click', () => goTo(i));
+    b.addEventListener('click', () => { goTo(i); restart(); });
     dotsBox.appendChild(b);
   });
   const dots = Array.from(dotsBox.children);
- 
+
   function goTo(i){
     index = Math.max(0, Math.min(cards.length - 1, i));
     track.scrollTo({ left: cards[index].offsetLeft - track.offsetLeft, behavior: 'smooth' });
     sync();
   }
- 
+
   function sync(){
     dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
-    prev.addEventListener('click', () => goTo(index === 0 ? cards.length - 1 : index - 1));
-    next.addEventListener('click', () => goTo(index === cards.length - 1 ? 0 : index + 1));
   }
- 
-  prev.addEventListener('click', () => goTo(index - 1));
-  next.addEventListener('click', () => goTo(index + 1));
- 
+
+  prev.addEventListener('click', () => { goTo(index === 0 ? cards.length - 1 : index - 1); restart(); });
+  next.addEventListener('click', () => { goTo(index === cards.length - 1 ? 0 : index + 1); restart(); });
+
   track.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft'){ e.preventDefault(); goTo(index - 1); }
-    if (e.key === 'ArrowRight'){ e.preventDefault(); goTo(index + 1); }
+    if (e.key === 'ArrowLeft'){ e.preventDefault(); goTo(index - 1); restart(); }
+    if (e.key === 'ArrowRight'){ e.preventDefault(); goTo(index + 1); restart(); }
   });
- 
+
   // keep dots in step with touch / trackpad swiping
   let tick;
   track.addEventListener('scroll', () => {
@@ -609,7 +607,7 @@
       sync();
     }, 90);
   });
- 
+
   // click-and-drag for mouse users
   let down = false, startX = 0, startScroll = 0;
   track.addEventListener('pointerdown', e => {
@@ -617,6 +615,7 @@
     down = true; startX = e.clientX; startScroll = track.scrollLeft;
     track.classList.add('is-dragging');
     track.setPointerCapture(e.pointerId);
+    pause();
   });
   track.addEventListener('pointermove', e => {
     if (!down) return;
@@ -627,6 +626,7 @@
     down = false;
     track.classList.remove('is-dragging');
     goTo(index);
+    play();
   }));
 
   // autoplay
@@ -651,12 +651,10 @@
   track.addEventListener('pointerleave', play);
   track.addEventListener('focusin', pause);
   track.addEventListener('focusout', play);
-  [prev, next, ...dots].forEach(b => b.addEventListener('click', restart));
   document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
 
-  play();
- 
   sync();
+  play();
 })();
 </script>
   
