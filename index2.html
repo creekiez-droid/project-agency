@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wintan — Smarter digital marketing for small businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1C3D;
+    --cobalt:#17356F;
+    --cobalt-bright:#2C57A8;
+    --sky:#9DB8E8;
+    --mist:#E8EEF9;
+    --paper:#FAFAF7;
+    --line:rgba(11,28,61,0.12);
+    --line-soft:rgba(11,28,61,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  :focus-visible{outline:2.5px solid var(--cobalt-bright); outline-offset:3px; border-radius:3px;}
+
+  .eyebrow{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.78rem;
+    color:var(--cobalt-bright); text-transform:uppercase; letter-spacing:0.12em;
+    display:inline-flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:22px; height:2px; background:var(--cobalt-bright); display:block;}
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 28px; border-radius:10px; font-weight:700; font-size:0.96rem;
+    font-family:'Inter',sans-serif;
+    transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+  .btn-primary{background:var(--cobalt); color:#fff; box-shadow:0 10px 24px -8px rgba(23,53,111,0.55);}
+  .btn-primary:hover{background:var(--ink); transform:translateY(-2px);}
+  .btn-ghost{border:1.5px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--cobalt); background:var(--mist);}
+  .btn-onDark{border:1.5px solid rgba(255,255,255,0.35); color:#fff;}
+  .btn-onDark:hover{background:rgba(255,255,255,0.1); border-color:#fff;}
+  .btn svg{width:16px; height:16px; transition:transform 0.2s ease;}
+  .btn:hover svg{transform:translateX(3px);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,247,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif; font-size:1.28rem; font-weight:600; color:var(--ink);
+    display:flex; align-items:center; gap:11px;
+  }
+  .logo-mark{
+    width:34px; height:34px; border-radius:8px;
+    background:var(--cobalt);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;
+    flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{font-size:0.93rem; font-weight:600; color:var(--ink); opacity:0.7; transition:opacity 0.2s ease;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{padding:11px 22px; font-size:0.88rem;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:76px 32px 0;
+    background:var(--paper);
+  }
+  .hero-grid{
+    max-width:1180px; margin:0 auto; padding-bottom:64px;
+    display:grid; grid-template-columns:1.05fr 0.85fr; gap:56px; align-items:center;
+  }
+  .hero h1{font-size:clamp(2.5rem, 4.6vw, 3.9rem); line-height:1.06; margin-bottom:24px;}
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--cobalt);
+    background:linear-gradient(180deg, transparent 62%, var(--mist) 62%);
+    padding:0 2px;
+  }
+  .hero p.lede{font-size:1.15rem; color:var(--ink); opacity:0.68; max-width:46ch; margin-bottom:36px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:30px;}
+  .hero-trust{display:flex; align-items:center; gap:12px; font-size:0.86rem; color:var(--ink); opacity:0.55; font-weight:500;}
+  .hero-trust .dots{display:flex; gap:5px;}
+  .hero-trust .dots span{width:6px; height:6px; border-radius:50%; background:var(--cobalt-bright); display:block;}
+
+  /* hero visual: media-plan card */
+  .plan-card{
+    background:var(--ink); border-radius:22px; padding:34px 30px;
+    box-shadow:0 40px 80px -30px rgba(11,28,61,0.45);
+    transform:rotate(1.5deg);
+    position:relative;
+  }
+  .plan-card::before{
+    content:''; position:absolute; inset:-14px; border:1.5px solid var(--line);
+    border-radius:30px; z-index:-1; transform:rotate(-3deg);
+  }
+  .plan-card-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:26px;}
+  .plan-card-head span.label{font-size:0.78rem; color:var(--sky); text-transform:uppercase; letter-spacing:0.1em; font-weight:700;}
+  .plan-card-head span.badge{font-size:0.74rem; color:#fff; background:var(--cobalt-bright); padding:4px 10px; border-radius:100px; font-weight:700;}
+  .plan-row{display:flex; align-items:center; gap:14px; margin-bottom:16px;}
+  .plan-row .name{width:88px; font-size:0.82rem; color:#fff; font-weight:600; flex-shrink:0;}
+  .plan-row .bar-track{flex:1; height:9px; background:rgba(255,255,255,0.12); border-radius:100px; overflow:hidden;}
+  .plan-row .bar-fill{height:100%; border-radius:100px; background:linear-gradient(90deg, var(--cobalt-bright), var(--sky));}
+  .plan-row .pct{width:38px; text-align:right; font-size:0.82rem; color:var(--sky); font-weight:700;}
+  .plan-card-foot{
+    margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.14);
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .plan-card-foot .big{font-family:'Fraunces',serif; font-size:1.7rem; color:#fff; font-weight:600;}
+  .plan-card-foot .small{font-size:0.78rem; color:var(--sky); max-width:16ch; text-align:right;}
+
+  /* ---------- TICKER (signature element) ---------- */
+  .ticker-band{
+    background:var(--cobalt); overflow:hidden; padding:16px 0;
+    border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .ticker-track{display:flex; width:max-content; animation:scroll-left 34s linear infinite;}
+  .ticker-band:hover .ticker-track{animation-play-state:paused;}
+  .ticker-item{
+    display:flex; align-items:center; gap:12px; padding:0 36px;
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:1.15rem;
+    color:#fff; white-space:nowrap;
+  }
+  .ticker-item .dot{width:5px; height:5px; border-radius:50%; background:var(--sky); opacity:0.7;}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{padding:110px 0;}
+  .section-head{max-width:640px; margin:0 auto 60px;}
+  .section-head.center{text-align:center; margin-left:auto; margin-right:auto;}
+  .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.6rem); margin-bottom:16px;}
+  .section-head p{color:var(--ink); opacity:0.65; font-size:1.05rem; max-width:52ch;}
+
+/* ---------- SERVICES CAROUSEL ---------- */
+  .service-carousel{position:relative;}
+ 
+  .service-track{
+    display:flex; gap:1px; background:var(--line);
+    border:1px solid var(--line); border-radius:20px; overflow:hidden;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none; cursor:grab;
+  }
+  .service-track::-webkit-scrollbar{display:none;}
+  .service-track.is-dragging{cursor:grabbing; scroll-behavior:auto;}
+  .service-track.is-dragging *{pointer-events:none;}
+ 
+  .service-card{
+    flex:0 0 100%; scroll-snap-align:center;
+    background:var(--paper); padding:44px 36px;
+    display:grid; grid-template-columns:minmax(0,260px) 1fr; gap:36px; align-items:center;
+    transition:background 0.25s ease;
+  }
+  .service-card:hover{background:var(--mist);}
+ 
+  .service-card .shot{
+    aspect-ratio:4/3; border-radius:14px; border:1px solid var(--line);
+    background:var(--mist); overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .service-card .shot img{width:100%; height:100%; object-fit:cover; display:block;}
+  .service-card .shot svg{width:34px; height:34px; color:var(--cobalt-bright); opacity:0.5;}
+ 
+  .service-card .copy{text-align:right;}
+  .service-card .num{
+    font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; color:var(--cobalt-bright);
+    display:block; margin-bottom:14px;
+  }
+  .service-card h3{font-size:1.45rem; margin:0 0 14px; line-height:1.25;}
+  .service-card p{color:var(--ink); opacity:0.65; font-size:0.96rem; margin:0 0 22px; max-width:46ch; margin-left:auto;}
+  .service-card .plain{
+    font-size:0.86rem; color:var(--cobalt); font-weight:600;
+    padding-top:18px; border-top:1px solid var(--line);
+  }
+ 
+  /* controls */
+  .carousel-nav{
+    display:flex; align-items:center; justify-content:center; gap:22px; margin-top:24px;
+  }
+  .carousel-nav button{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--line);
+    background:var(--paper); color:var(--cobalt); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background 0.2s ease, border-color 0.2s ease;
+  }
+  .carousel-nav button:hover:not(:disabled){background:var(--mist); border-color:var(--cobalt-bright);}
+  .carousel-nav button:disabled{opacity:0.35; cursor:default;}
+  .carousel-nav button:focus-visible{outline:2px solid var(--cobalt-bright); outline-offset:3px;}
+  .carousel-dots{display:flex; gap:9px;}
+  .carousel-dots button{
+    width:8px; height:8px; padding:0; border-radius:50%; border:0;
+    background:var(--line); cursor:pointer; transition:background 0.2s ease, width 0.2s ease;
+  }
+  .carousel-dots button[aria-current="true"]{background:var(--cobalt-bright); width:24px; border-radius:4px;}
+ 
+  @media (max-width:760px){
+    .service-card{grid-template-columns:1fr; gap:24px; padding:32px 24px; text-align:left;}
+    .service-card .copy{text-align:left;}
+    .service-card p{margin-left:0;}
+    .service-card .shot{aspect-ratio:16/9;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .service-track{scroll-behavior:auto;}
+  }
+
+  /* ---------- HOW IT WORKS (dark, inverted) ---------- */
+  .how{background:var(--ink); color:#fff;}
+  .how .section-head h2, .how .section-head p{color:#fff;}
+  .how .section-head p{opacity:0.6;}
+  .how .eyebrow{color:var(--sky);}
+  .how .eyebrow::before{background:var(--sky);}
+  .how-flow{display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; position:relative;}
+  .how-step{padding:0 30px; position:relative;}
+  .how-step:not(:first-child)::before{
+    content:''; position:absolute; left:0; top:26px; width:1px; height:calc(100% - 26px);
+    background:rgba(255,255,255,0.14);
+  }
+  .how-step .step-num{
+    width:52px; height:52px; border-radius:50%; border:1.5px solid var(--cobalt-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; color:var(--sky);
+    margin-bottom:22px; background:var(--ink); position:relative; z-index:1;
+  }
+  .how-step h4{color:#fff; font-size:1.18rem; margin-bottom:10px;}
+  .how-step p{color:#fff; opacity:0.6; font-size:0.94rem; max-width:32ch;}
+
+  /* ---------- AUDIENCE ---------- */
+  .audience{background:var(--mist);}
+  .audience-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .audience-card{
+    background:var(--paper); border-radius:20px; padding:42px 38px;
+    border:1px solid var(--line-soft);
+  }
+  .audience-card .tag{
+    display:inline-block; font-size:0.78rem; font-weight:700; color:var(--cobalt-bright);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px;
+  }
+  .audience-card h3{font-size:1.45rem; margin-bottom:14px; line-height:1.25;}
+  .audience-card p{color:var(--ink); opacity:0.65; font-size:0.98rem;}
+
+  /* ---------- FAQ ---------- */
+  .faq-layout{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+  .faq-intro h2{font-size:clamp(1.9rem,3.2vw,2.5rem); margin-bottom:16px;}
+  .faq-intro p{color:var(--ink); opacity:0.65; font-size:1.02rem; margin-bottom:28px; max-width:36ch;}
+  .faq-list{display:flex; flex-direction:column;}
+  details.faq-item{border-bottom:1px solid var(--line); padding:22px 0;}
+  details.faq-item:first-child{border-top:1px solid var(--line);}
+  details.faq-item summary{
+    list-style:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+  }
+  details.faq-item summary::-webkit-details-marker{display:none;}
+  details.faq-item summary h4{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:1.02rem; color:var(--ink);
+  }
+  details.faq-item summary .plus{
+    width:26px; height:26px; border-radius:50%; border:1.5px solid var(--line);
+    flex-shrink:0; position:relative; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  details.faq-item summary .plus::before, details.faq-item summary .plus::after{
+    content:''; position:absolute; background:var(--cobalt); top:50%; left:50%;
+    transform:translate(-50%,-50%);
+  }
+  details.faq-item summary .plus::before{width:10px; height:1.5px;}
+  details.faq-item summary .plus::after{width:1.5px; height:10px; transition:opacity 0.2s ease;}
+  details.faq-item[open] summary .plus{border-color:var(--cobalt); transform:rotate(180deg);}
+  details.faq-item[open] summary .plus::after{opacity:0;}
+  details.faq-item p{color:var(--ink); opacity:0.65; font-size:0.96rem; margin-top:14px; padding-right:40px;}
+
+  /* ---------- CTA ---------- */
+  .cta-band{
+    position:relative; overflow:hidden;
+    background:var(--cobalt);
+    color:#fff; text-align:center;
+    padding:100px 32px; border-radius:28px; max-width:1100px; margin:0 auto;
+  }
+  .cta-band::before{
+    content:''; position:absolute; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, rgba(157,184,232,0.35) 0%, transparent 70%);
+    top:-220px; right:-140px;
+  }
+  .cta-band > *{position:relative; z-index:1;}
+  .cta-band .eyebrow{color:var(--sky); justify-content:center;}
+  .cta-band .eyebrow::before{background:var(--sky);}
+  .cta-band h2{color:#fff; font-size:clamp(1.9rem,3.4vw,2.6rem); margin-bottom:18px;}
+  .cta-band p{color:#fff; opacity:0.72; max-width:48ch; margin:0 auto 36px; font-size:1.04rem;}
+  .cta-band-actions{display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+  .cta-band .btn-primary{background:#fff; color:var(--cobalt); box-shadow:0 10px 24px -8px rgba(0,0,0,0.25);}
+  .cta-band .btn-primary:hover{background:var(--mist);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:#fff; margin-top:110px;}
+  .footer-grid{
+    padding:70px 32px 40px; display:grid; grid-template-columns:1.4fr 1fr 1fr;
+    gap:50px; max-width:1180px; margin:0 auto;
+  }
+  footer .logo{color:#fff;}
+  footer .logo-mark{background:var(--cobalt-bright);}
+  footer .foot-tagline{color:#fff; opacity:0.55; font-size:0.94rem; margin-top:16px; max-width:32ch;}
+  .footer-col h5{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--sky); font-weight:700; margin-bottom:18px;}
+  .footer-col a{display:block; color:#fff; opacity:0.6; font-size:0.92rem; margin-bottom:12px; transition:opacity 0.2s ease;}
+  .footer-col a:hover{opacity:1;}
+  .footer-base{
+    border-top:1px solid rgba(255,255,255,0.1); padding:24px 32px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    max-width:1180px; margin:0 auto; font-size:0.82rem; color:#fff; opacity:0.45;
+  }
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .plan-card{transform:none; max-width:440px;}
+    .service-grid{grid-template-columns:1fr;}
+    .how-flow{grid-template-columns:1fr; gap:40px;}
+    .how-step:not(:first-child)::before{display:none;}
+    .audience-grid{grid-template-columns:1fr;}
+    .faq-layout{grid-template-columns:1fr; gap:36px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+  }
+  @media (max-width:560px){
+    .footer-grid{grid-template-columns:1fr; gap:36px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="logo-mark">W</span>Wintan</div>
+    <div class="nav-links">
+      <a href="#services">What we do</a>
+      <a href="#audience">Who it's for</a>
+      <a href="#faq">New to this?</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary nav-cta">Say hello</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Advertising, made simple</div>
+      <h1>Smarter Digital Marketing. <em>Designed for Small Businesses.</em></h1>
+      <p class="lede">We get your business seen by the right customers, beyond social media.</p>
+      <div class="hero-actions">
+        <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary">Need advice? Let's chat
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#faq" class="btn btn-ghost">I'm new to this</a>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-card-head">
+        <span class="label">Sample media plan</span>
+        <span class="badge">This week</span>
+      </div>
+      <div class="plan-row"><span class="name">Web &amp; apps</span><span class="bar-track"><span class="bar-fill" style="width:82%"></span></span><span class="pct">32%</span></div>
+      <div class="plan-row"><span class="name">Connected TV</span><span class="bar-track"><span class="bar-fill" style="width:70%"></span></span><span class="pct">28%</span></div>
+      <div class="plan-row"><span class="name">Audio</span><span class="bar-track"><span class="bar-fill" style="width:45%"></span></span><span class="pct">18%</span></div>
+      <div class="plan-row"><span class="name">Out-of-home</span><span class="bar-track"><span class="bar-fill" style="width:30%"></span></span><span class="pct">12%</span></div>
+      <div class="plan-row"><span class="name">Podcasts</span><span class="bar-track"><span class="bar-fill" style="width:25%"></span></span><span class="pct">10%</span></div>
+      <div class="plan-card-foot">
+        <span class="big">$0 markup</span>
+        <span class="small">Built around your budget, not ours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-band" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Every dollar has a job before it goes anywhere<span class="dot"></span></span>
+    <span class="ticker-item">We handle the tech-heavy advertising, so you don't have to<span class="dot"></span></span>
+    <span class="ticker-item">We'll tell you if your money is working.<span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">What we do</span>
+      <h2>Three simple ways we can help</h2>
+    </div>
+ 
+    <div class="service-carousel">
+      <div class="service-track" id="serviceTrack" tabindex="0" role="group" aria-label="Services carousel">
+ 
+        <article class="service-card">
+          <div class="shot">
+            <!-- Replace with <img src="your-image.jpg" alt=""> -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M4 17l4.5-4.5 3.5 3.5 3-3 5 5"/></svg>
+          </div>
+          <div class="copy">
+            <span class="num">01</span>
+            <h3>Digital Strategy</h3>
+            <p>We can help you understand your target audience, where to spend, and how much. A simple plan, made just for your business. Your investment matters.</p>
+          </div>
+        </article>
+ 
+        <article class="service-card">
+          <div class="shot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M4 17l4.5-4.5 3.5 3.5 3-3 5 5"/></svg>
+          </div>
+          <div class="copy">
+            <span class="num">02</span>
+            <h3>Omni-channel Activation</h3>
+            <p>We can run your ads across all online media channels — so you reach people while they're browsing, watching, or listening, wherever that happens to be.</p>
+          </div>
+        </article>
+ 
+        <article class="service-card">
+          <div class="shot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M4 17l4.5-4.5 3.5 3.5 3-3 5 5"/></svg>
+          </div>
+          <div class="copy">
+            <span class="num">03</span>
+            <h3>Marketing Advisor</h3>
+            <p>We can provide strategic advice, agency coordination, and independent guidance to help you get more from your marketing investment.</p>
+          </div>
+        </article>
+ 
+      </div>
+ 
+      <div class="carousel-nav">
+        <button type="button" id="servicePrev" aria-label="Previous service">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="carousel-dots" id="serviceDots"></div>
+        <button type="button" id="serviceNext" aria-label="Next service">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUDIENCE ================= -->
+<section class="audience" id="audience">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">Who it's for</span>
+      <h3>The small,</h3><h2> but mighty</h2>
+      <p style="margin:0 auto;">You don't need a big marketing team to advertise like one.</p>
+    </div>
+     <div class="audience-grid">
+    <div class="audience-card">
+        <span class="tag">Marketing Consultation</span>
+        <h3>Your marketing deserves a second look</h3>
+        <p>Already working with a marketing partner? No problem. We’ll take a fresh look at your strategy and give you an honest, straightforward opinion.</p>
+    </div>
+    <div class="audience-card">
+        <span class="tag">Digital Advertising</span>
+        <h3>Beyond social media</h3>
+        <p>You want to advertise on websites, apps, TV, digital radio and podcasts, and out-of-home screens — without needing to become a tech expert or hire someone full-time to manage it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="wrap faq-layout">
+    <div class="faq-intro">
+      <span class="eyebrow">New to this?</span>
+      <h2>No jargon, just solutions.</h2>
+      <p>The questions we get asked most, answered simply.</p>
+      <a href="#contact" class="btn btn-ghost">Ask us directly</a>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><h4>Can I advertise on TV, radio and out-of-home screens?</h4><span class="plus"></span></summary>
+        <p>Yes! We'll run your campaign programmatically. In simple terms, that means using a technology platform to buy ad space automatically, rather than calling every publisher to negotiate prices — helping us get your ads in front of people more likely to care about what you're selling.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>I have $5,000, can I advertise on TV?</h4><span class="plus"></span></summary>
+        <p>Yes, we can run your ads on Connected TV (apps like 7Plus, 9Now, Stan, Network 10, Paramount+, SBS, and more).</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>Do I need to understand the technology myself?</h4><span class="plus"></span></summary>
+        <p>No. That's what we're here for. We handle the technical side and explain everything back to you in plain language, so you always know what's happening with your media investment.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>Is this only for big businesses with big budgets?</h4><span class="plus"></span></summary>
+        <p>Not at all — that's exactly why we started this. We specialise in making it work for small, lean businesses, with budgets and expectations to match.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>Sounds great, but how much will this cost?</h4><span class="plus"></span></summary>
+        <p>We believe your hard-earned dollars should work harder for you. You pay for your media. No markups. We charge an engagement fee based on the job required, agreed upfront — no surprises.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<div class="wrap">
+  <div class="cta-band" id="contact">
+    <span class="eyebrow">Let's talk</span>
+    <h2>Need advice or a helping hand?</h2>
+    <p>No pressure, no jargon — just an honest conversation about what makes sense for your business.</p>
+    <div class="cta-band-actions">
+      <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-onDark">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo"><span class="logo-mark">W</span>Wintan</div>
+      <p class="foot-tagline">Friendly, jargon-free media planning and advertising for small businesses.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <a href="#services">What we do</a>
+      <a href="#audience">Who it's for</a>
+      <a href="#faq">New to this?</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h5>Get in touch</h5>
+      <a href="#contact">Book a call</a>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© 2026 Wintan. All rights reserved.</span>
+    <span>Sydney, Australia</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const track = document.getElementById('serviceTrack');
+  const cards = Array.from(track.children);
+  const dotsBox = document.getElementById('serviceDots');
+  const prev = document.getElementById('servicePrev');
+  const next = document.getElementById('serviceNext');
+  let index = 0;
+ 
+  cards.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Go to service ' + (i + 1));
+    b.addEventListener('click', () => goTo(i));
+    dotsBox.appendChild(b);
+  });
+  const dots = Array.from(dotsBox.children);
+ 
+  function goTo(i){
+    index = Math.max(0, Math.min(cards.length - 1, i));
+    track.scrollTo({ left: cards[index].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    sync();
+  }
+ 
+  function sync(){
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+    prev.disabled = index === 0;
+    next.disabled = index === cards.length - 1;
+  }
+ 
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+ 
+  track.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft'){ e.preventDefault(); goTo(index - 1); }
+    if (e.key === 'ArrowRight'){ e.preventDefault(); goTo(index + 1); }
+  });
+ 
+  // keep dots in step with touch / trackpad swiping
+  let tick;
+  track.addEventListener('scroll', () => {
+    clearTimeout(tick);
+    tick = setTimeout(() => {
+      const mid = track.scrollLeft + track.clientWidth / 2;
+      let closest = 0, best = Infinity;
+      cards.forEach((c, i) => {
+        const d = Math.abs((c.offsetLeft - track.offsetLeft) + c.offsetWidth / 2 - mid);
+        if (d < best){ best = d; closest = i; }
+      });
+      index = closest;
+      sync();
+    }, 90);
+  });
+ 
+  // click-and-drag for mouse users
+  let down = false, startX = 0, startScroll = 0;
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'touch') return;
+    down = true; startX = e.clientX; startScroll = track.scrollLeft;
+    track.classList.add('is-dragging');
+    track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener('pointermove', e => {
+    if (!down) return;
+    track.scrollLeft = startScroll - (e.clientX - startX);
+  });
+  ['pointerup','pointercancel'].forEach(ev => track.addEventListener(ev, () => {
+    if (!down) return;
+    down = false;
+    track.classList.remove('is-dragging');
+    goTo(index);
+  }));
+ 
+  sync();
+})();
+</script>
+  
+</body>
+</html>
