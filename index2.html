@@ -582,8 +582,8 @@
  
   function sync(){
     dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
-    prev.disabled = index === 0;
-    next.disabled = index === cards.length - 1;
+    prev.addEventListener('click', () => goTo(index === 0 ? cards.length - 1 : index - 1));
+    next.addEventListener('click', () => goTo(index === cards.length - 1 ? 0 : index + 1));
   }
  
   prev.addEventListener('click', () => goTo(index - 1));
@@ -628,6 +628,33 @@
     track.classList.remove('is-dragging');
     goTo(index);
   }));
+
+  // autoplay
+  const DELAY = 10000;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timer = null;
+
+  function play(){
+    if (reduce || timer) return;
+    timer = setInterval(() => {
+      goTo(index >= cards.length - 1 ? 0 : index + 1);
+    }, DELAY);
+  }
+  function pause(){
+    clearInterval(timer);
+    timer = null;
+  }
+  function restart(){ pause(); play(); }
+
+  // pause while the person is looking at or using it
+  track.addEventListener('pointerenter', pause);
+  track.addEventListener('pointerleave', play);
+  track.addEventListener('focusin', pause);
+  track.addEventListener('focusout', play);
+  [prev, next, ...dots].forEach(b => b.addEventListener('click', restart));
+  document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
+
+  play();
  
   sync();
 })();
