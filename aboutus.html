@@ -163,10 +163,10 @@
   .quote-card .attrib .who{font-size:0.86rem; color:#fff;}
   .quote-card .attrib .who span{display:block; opacity:0.55; font-size:0.78rem; margin-top:2px;}
 
-  /* ---------- FAQ (now nested under the story paragraph, left column) ---------- */
-  .story-copy .faq-list{
+/* ---------- FAQ (now its own centered section, below Team) ---------- */
+  .beliefs .faq-list{
     display:flex; flex-direction:column;
-    margin-top:36px;
+    max-width:700px; margin:0 auto;
   }
   details.faq-item{border-bottom:1px solid var(--line); padding:22px 0;}
   details.faq-item:first-child{border-top:1px solid var(--line);}
@@ -282,22 +282,6 @@
       <h2>We believe every business should have an equal opportunity to compete,<br>no matter its size.</h2>
       <p>We started Wintan consultancy because small businesses are often given the same marketing playbook as big brands — even when it doesn't fit.</p>
       <p>Wintan provides digital marketing advice to small business owners who want to be seen beyond social media — without hiring an in-house team or signing away control of their media investment.</p>
-
-      <span class="eyebrow">What we believe</span>
-      <div class="faq-list">
-        <details class="faq-item" open>
-          <summary><h4>Marketing support, when you need it</h4><span class="plus"></span></summary>
-          <p>We care about your business and are here whenever you need an independent perspective, advice, or a helping hand.</p>
-        </details>
-        <details class="faq-item">
-          <summary><h4>Right for you, or not at all</h4><span class="plus"></span></summary>
-          <p>We’ll only recommend what we believe will genuinely help your business. If it’s not the right fit, we’ll tell you upfront — before you spend a dollar.</p>
-        </details>
-        <details class="faq-item">
-          <summary><h4>Plain language, always</h4><span class="plus"></span></summary>
-          <p>If we can't explain something simply, we haven't understood it well enough ourselves. You should never need a glossary to read your own report.</p>
-        </details>
-      </div>
     </div>
 
     <div class="quote-card">
@@ -325,12 +309,35 @@
         <span class="role">Managing Partner, Strategy</span>
         <p>Ten years buying media for national brands, now focused entirely on making the same tools work for small businesses.</p>
       </div>
-        <div class="team-card">
+      <div class="team-card">
         <span class="avatar">R</span>
         <h3>Rachel</h3>
         <span class="role">Managing Partner, Operations</span>
         <p>Rachel has spent over 15 years in the world of digital advertising, from hands-on campaign delivery to helping clients drive growth. X has deep expertise in digital and programmatic advertising, client strategy, and turning business goals into measurable results.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BELIEFS ================= -->
+<section class="beliefs">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">What we believe</span>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary><h4>Marketing support, when you need it</h4><span class="plus"></span></summary>
+        <p>We care about your business and are here whenever you need an independent perspective, advice, or a helping hand.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>Right for you, or not at all</h4><span class="plus"></span></summary>
+        <p>We'll only recommend what we believe will genuinely help your business. If it's not the right fit, we'll tell you upfront — before you spend a dollar.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>Plain language, always</h4><span class="plus"></span></summary>
+        <p>If we can't explain something simply, we haven't understood it well enough ourselves. You should never need a glossary to read your own report.</p>
+      </details>
     </div>
   </div>
 </section>
