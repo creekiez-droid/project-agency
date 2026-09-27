@@ -163,6 +163,35 @@
   .quote-card .attrib .who{font-size:0.86rem; color:#fff;}
   .quote-card .attrib .who span{display:block; opacity:0.55; font-size:0.78rem; margin-top:2px;}
 
+  /* ---------- FAQ ---------- */
+  .faq-layout{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+  .faq-intro h2{font-size:clamp(1.9rem,3.2vw,2.5rem); margin-bottom:16px;}
+  .faq-intro p{color:var(--ink); opacity:0.65; font-size:1.02rem; margin-bottom:28px; max-width:36ch;}
+  .faq-list{display:flex; flex-direction:column;}
+  details.faq-item{border-bottom:1px solid var(--line); padding:22px 0;}
+  details.faq-item:first-child{border-top:1px solid var(--line);}
+  details.faq-item summary{
+    list-style:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+  }
+  details.faq-item summary::-webkit-details-marker{display:none;}
+  details.faq-item summary h4{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:1.02rem; color:var(--ink);
+  }
+  details.faq-item summary .plus{
+    width:26px; height:26px; border-radius:50%; border:1.5px solid var(--line);
+    flex-shrink:0; position:relative; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  details.faq-item summary .plus::before, details.faq-item summary .plus::after{
+    content:''; position:absolute; background:var(--cobalt); top:50%; left:50%;
+    transform:translate(-50%,-50%);
+  }
+  details.faq-item summary .plus::before{width:10px; height:1.5px;}
+  details.faq-item summary .plus::after{width:1.5px; height:10px; transition:opacity 0.2s ease;}
+  details.faq-item[open] summary .plus{border-color:var(--cobalt); transform:rotate(180deg);}
+  details.faq-item[open] summary .plus::after{opacity:0;}
+  details.faq-item p{color:var(--ink); opacity:0.65; font-size:0.96rem; margin-top:14px; padding-right:40px;}
+
   /* ---------- VALUES ---------- */
 .values{background:var(--mist);}
 .value-grid{
