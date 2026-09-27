@@ -140,7 +140,7 @@
   .plan-card-foot .small{font-size:0.78rem; color:var(--sky); max-width:16ch; text-align:right;}
 
   /* ---------- SECTION SCAFFOLDING ---------- */
-  section{padding:110px 0;}
+  section{padding:64px 0;}
   .section-head{max-width:640px; margin:0 auto 60px;}
   .section-head.center{text-align:center; margin-left:auto; margin-right:auto;}
   .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.6rem); margin-bottom:16px;}
@@ -354,7 +354,7 @@
 
   @media (max-width:980px){
     .hero-grid{grid-template-columns:1fr;}
-    .plan-card{transform:none; max-width:440px;}
+    .plan-card{display:none;}
     .service-grid{grid-template-columns:1fr;}
     .how-flow{grid-template-columns:1fr; gap:40px;}
     .how-step:not(:first-child)::before{display:none;}
@@ -362,6 +362,8 @@
     .faq-layout{grid-template-columns:1fr; gap:36px;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     .nav-links{display:none;}
+    .section-head h2{font-size:clamp(1.4rem, 6vw, 1.8rem); white-space:nowrap;}
+    section{padding:44px 0;}
   }
   @media (max-width:560px){
     .footer-grid{grid-template-columns:1fr; gap:36px;}
