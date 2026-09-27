@@ -138,9 +138,9 @@
   .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.6rem); margin-bottom:16px;}
   .section-head p{color:var(--ink); opacity:0.65; font-size:1.05rem; max-width:52ch;}
 
-  /* ---------- STORY (split, with quote card) ---------- */
+   /* ---------- STORY (split, with quote card + FAQ below) ---------- */
   .story{background:var(--mist);}
-  .story-grid{display:grid; grid-template-columns:1fr 0.85fr; gap:64px; align-items:center;}
+  .story-grid{display:grid; grid-template-columns:1fr 0.85fr; gap:64px; align-items:start;}
   .story-copy h2{font-size:clamp(1.9rem,3.2vw,2.5rem); margin-bottom:22px;}
   .story-copy p{color:var(--ink); opacity:0.68; font-size:1.03rem; margin-bottom:18px; max-width:52ch;}
 
@@ -163,11 +163,11 @@
   .quote-card .attrib .who{font-size:0.86rem; color:#fff;}
   .quote-card .attrib .who span{display:block; opacity:0.55; font-size:0.78rem; margin-top:2px;}
 
-  /* ---------- FAQ ---------- */
-  .faq-layout{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
-  .faq-intro h2{font-size:clamp(1.9rem,3.2vw,2.5rem); margin-bottom:16px;}
-  .faq-intro p{color:var(--ink); opacity:0.65; font-size:1.02rem; margin-bottom:28px; max-width:36ch;}
-  .faq-list{display:flex; flex-direction:column;}
+  /* ---------- FAQ (now nested under the story paragraph, left column) ---------- */
+  .story-copy .faq-list{
+    display:flex; flex-direction:column;
+    margin-top:36px;
+  }
   details.faq-item{border-bottom:1px solid var(--line); padding:22px 0;}
   details.faq-item:first-child{border-top:1px solid var(--line);}
   details.faq-item summary{
@@ -275,14 +275,38 @@
 </section>
   
 <!-- ================= STORY ================= -->
-<section class="story">
+<section class="story" id="faq">
   <div class="wrap story-grid">
     <div class="story-copy">
       <span class="eyebrow">Our story</span>
       <h2>We believe every business should have an equal opportunity to compete,<br>no matter its size.</h2>
-      <p>We started Wintan consultancy because small businesses are often given the same marketing playbook as big brands — even when it doesn’t fit. </p>
+      <p>We started Wintan consultancy because small businesses are often given the same marketing playbook as big brands — even when it doesn't fit.</p>
       <p>Wintan provides digital marketing advice to small business owners who want to be seen beyond social media — without hiring an in-house team or signing away control of their media investment.</p>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary><h4>Can I advertise on TV, radio and out-of-home screens?</h4><span class="plus"></span></summary>
+          <p>Yes! We'll run your campaign programmatically. In simple terms, that means using a technology platform to buy ad space automatically, rather than calling every publisher to negotiate prices — helping us get your ads in front of people more likely to care about what you're selling.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h4>I have $5,000, can I advertise on TV?</h4><span class="plus"></span></summary>
+          <p>Yes, we can run your ads on Connected TV (apps like 7Plus, 9Now, Stan, Network 10, Paramount+, SBS, and more).</p>
+        </details>
+        <details class="faq-item">
+          <summary><h4>Do I need to understand the technology myself?</h4><span class="plus"></span></summary>
+          <p>No. That's what we're here for. We handle the technical side and explain everything back to you in plain language, so you always know what's happening with your media investment.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h4>Is this only for big businesses with big budgets?</h4><span class="plus"></span></summary>
+          <p>Not at all — that's exactly why we started this. We specialise in making it work for small, lean businesses, with budgets and expectations to match.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h4>Sounds great, but how much will this cost?</h4><span class="plus"></span></summary>
+          <p>We believe your hard-earned dollars should work harder for you. You pay for your media. No markups. We charge an engagement fee based on the job required, agreed upfront — no surprises.</p>
+        </details>
+      </div>
     </div>
+
     <div class="quote-card">
       <span class="mark">&ldquo;</span>
       <blockquote>We're on a mission to democratise marketing.</blockquote>
