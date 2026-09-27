@@ -354,7 +354,7 @@
 
   @media (max-width:980px){
     .hero-grid{grid-template-columns:1fr;}
-    .plan-card{transform:none; max-width:440px;}
+    .plan-card{display:none;}
     .service-grid{grid-template-columns:1fr;}
     .how-flow{grid-template-columns:1fr; gap:40px;}
     .how-step:not(:first-child)::before{display:none;}
@@ -362,6 +362,7 @@
     .faq-layout{grid-template-columns:1fr; gap:36px;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     .nav-links{display:none;}
+    .section-head h2{font-size:clamp(1.4rem, 6vw, 1.8rem); white-space:nowrap;}
   }
   @media (max-width:560px){
     .footer-grid{grid-template-columns:1fr; gap:36px;}
