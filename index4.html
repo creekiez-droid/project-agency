@@ -139,24 +139,6 @@
   .plan-card-foot .big{font-family:'Fraunces',serif; font-size:1.7rem; color:#fff; font-weight:600;}
   .plan-card-foot .small{font-size:0.78rem; color:var(--sky); max-width:16ch; text-align:right;}
 
-  /* ---------- TICKER (signature element) ---------- */
-  .ticker-band{
-    background:var(--cobalt); overflow:hidden; padding:16px 0;
-    border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08);
-  }
-  .ticker-track{display:flex; width:max-content; animation:scroll-left 34s linear infinite;}
-  .ticker-band:hover .ticker-track{animation-play-state:paused;}
-  .ticker-item{
-    display:flex; align-items:center; gap:12px; padding:0 36px;
-    font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:1.15rem;
-    color:#fff; white-space:nowrap;
-  }
-  .ticker-item .dot{width:5px; height:5px; border-radius:50%; background:var(--sky); opacity:0.7;}
-  @keyframes scroll-left{
-    from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
-  }
-
   /* ---------- SECTION SCAFFOLDING ---------- */
   section{padding:110px 0;}
   .section-head{max-width:640px; margin:0 auto 60px;}
@@ -408,7 +390,6 @@
         <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary">Need advice? Let's chat
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#faq" class="btn btn-ghost">I'm new to this</a>
       </div>
     </div>
 
@@ -489,38 +470,25 @@
   </div>
 </section>
 
-<!-- ================= AUDIENCE ================= -->
-<section class="audience" id="audience">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow" style="justify-content:center;">Who it's for</span>
-      <h3>The small,</h3><h2> but mighty</h2>
-      <p style="margin:0 auto;">You don't need a big marketing team to advertise like one.</p>
-    </div>
-     <div class="audience-grid">
-    <div class="audience-card">
-        <span class="tag">Marketing Consultation</span>
-        <h3>Your marketing deserves a second look</h3>
-        <p>Already working with a marketing partner? No problem. We’ll take a fresh look at your strategy and give you an honest, straightforward opinion.</p>
-    </div>
-    <div class="audience-card">
-        <span class="tag">Digital Advertising</span>
-        <h3>Beyond social media</h3>
-        <p>You want to advertise on websites, apps, TV, digital radio and podcasts, and out-of-home screens — without needing to become a tech expert or hire someone full-time to manage it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= FAQ ================= -->
 <section class="faq" id="faq">
   <div class="wrap faq-layout">
     <div class="faq-intro">
-      <span class="eyebrow">New to this?</span>
-      <h2>No jargon, just solutions.</h2>
+      <span class="eyebrow">Frequently asked questions</span>
+      <h2>The small, but mighty. No jargon, just solutions.</h2>
       <p>The questions we get asked most, answered simply.</p>
-      <a href="#contact" class="btn btn-ghost">Ask us directly</a>
+      <a href="#contact" class="btn btn-ghost">Contact Us</a>
     </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><h4>Already working with a marketing partner? No problem.</h4><span class="plus"></span></summary>
+        <p>We’ll take a fresh look at your strategy and give you an honest, straightforward opinion.</p>
+      </details>
+        <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><h4>I already run social media ads, but want to expand my reach.</h4><span class="plus"></span></summary>
+        <p>We can help you advertise on websites, apps, TV, digital radio and podcasts, and out-of-home screens — without needing to become a tech expert or hire someone full-time to manage it.</p>
+      </details>
     <div class="faq-list">
       <details class="faq-item" open>
         <summary><h4>Can I advertise on TV, radio and out-of-home screens?</h4><span class="plus"></span></summary>
