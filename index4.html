@@ -127,17 +127,31 @@
   .plan-card-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:26px;}
   .plan-card-head span.label{font-size:0.78rem; color:var(--sky); text-transform:uppercase; letter-spacing:0.1em; font-weight:700;}
   .plan-card-head span.badge{font-size:0.74rem; color:#fff; background:var(--cobalt-bright); padding:4px 10px; border-radius:100px; font-weight:700;}
-  .plan-row{display:flex; align-items:center; gap:14px; margin-bottom:16px;}
-  .plan-row .name{width:88px; font-size:0.82rem; color:#fff; font-weight:600; flex-shrink:0;}
-  .plan-row .bar-track{flex:1; height:9px; background:rgba(255,255,255,0.12); border-radius:100px; overflow:hidden;}
-  .plan-row .bar-fill{height:100%; border-radius:100px; background:linear-gradient(90deg, var(--cobalt-bright), var(--sky));}
-  .plan-row .pct{width:38px; text-align:right; font-size:0.82rem; color:var(--sky); font-weight:700;}
-  .plan-card-foot{
-    margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.14);
-    display:flex; justify-content:space-between; align-items:baseline;
+    /* ---------- FULL FUNNEL (inverted triangle) ---------- */
+  .funnel{list-style:none; display:flex; flex-direction:column; gap:4px; margin:0;}
+  .funnel-layer{
+    height:64px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
   }
-  .plan-card-foot .big{font-family:'Fraunces',serif; font-size:1.7rem; color:#fff; font-weight:600;}
-  .plan-card-foot .small{font-size:0.78rem; color:var(--sky); max-width:16ch; text-align:right;}
+  .funnel-layer .stage{
+    font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; line-height:1.2;
+  }
+  .funnel-layer .metric{
+    font-size:0.72rem; font-weight:600; letter-spacing:0.02em; margin-top:2px; opacity:0.85;
+  }
+
+  /* each layer's slanted edges continue the one before it, forming a single funnel */
+  .funnel-layer.f1{clip-path:polygon(0 0, 100% 0, 92.5% 100%, 7.5% 100%);   background:#9DB8E8; color:var(--ink);}
+  .funnel-layer.f2{clip-path:polygon(7.5% 0, 92.5% 0, 85% 100%, 15% 100%);  background:#7FA3DD; color:var(--ink);}
+  .funnel-layer.f3{clip-path:polygon(15% 0, 85% 0, 77.5% 100%, 22.5% 100%); background:#3F6FC0; color:#fff;}
+  .funnel-layer.f4{clip-path:polygon(22.5% 0, 77.5% 0, 70% 100%, 30% 100%); background:#2C57A8; color:#fff;}
+
+  @media (max-width:480px){
+    .funnel-layer{height:58px;}
+    .funnel-layer .stage{font-size:0.85rem;}
+    .funnel-layer .metric{font-size:0.68rem;}
+  }
 
   /* ---------- SECTION SCAFFOLDING ---------- */
   section{padding:64px 0;}
@@ -400,17 +414,32 @@
 
     <div class="plan-card">
       <div class="plan-card-head">
-        <span class="label">Sample media plan</span>
-        <span class="badge">This week</span>
+        <span class="label">Full Funnel Planning</span>
+        <span class="badge">ROI Impact</span>
       </div>
-      <div class="plan-row"><span class="name">Web &amp; apps</span><span class="bar-track"><span class="bar-fill" style="width:82%"></span></span><span class="pct">32%</span></div>
-      <div class="plan-row"><span class="name">Connected TV</span><span class="bar-track"><span class="bar-fill" style="width:70%"></span></span><span class="pct">28%</span></div>
-      <div class="plan-row"><span class="name">Audio</span><span class="bar-track"><span class="bar-fill" style="width:45%"></span></span><span class="pct">18%</span></div>
-      <div class="plan-row"><span class="name">Out-of-home</span><span class="bar-track"><span class="bar-fill" style="width:30%"></span></span><span class="pct">12%</span></div>
-      <div class="plan-row"><span class="name">Podcasts</span><span class="bar-track"><span class="bar-fill" style="width:25%"></span></span><span class="pct">10%</span></div>
+
+      <ol class="funnel" aria-label="Full funnel media plan">
+        <li class="funnel-layer f1">
+          <span class="stage">Awareness</span>
+          <span class="metric">Reach · Video completion</span>
+        </li>
+        <li class="funnel-layer f2">
+          <span class="stage">Consideration</span>
+          <span class="metric">Engagement · Site visits</span>
+        </li>
+        <li class="funnel-layer f3">
+          <span class="stage">Conversion</span>
+          <span class="metric">CPA · Sales</span>
+        </li>
+        <li class="funnel-layer f4">
+          <span class="stage">Retention</span>
+          <span class="metric">Repeat purchase</span>
+        </li>
+      </ol>
+
       <div class="plan-card-foot">
-        <span class="big">$0 markup</span>
-        <span class="small">Built around your budget, not ours</span>
+        <span class="big">Revenue + ROAS</span>
+        <span class="small">Every dollar tracked, from first view to repeat sale</span>
       </div>
     </div>
   </div>
