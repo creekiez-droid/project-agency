@@ -199,6 +199,18 @@
     .wrap{padding:0 20px;}
     .split{padding:56px 0 72px;}
     .footer-grid{grid-template-columns:1fr; gap:36px;}
+
+    /* 1) less blue space above "Who we're looking for" */
+    .looking{padding:48px 0 64px;}
+    .section-head{margin-bottom:32px;}
+
+    /* 2) keep both buttons on one line */
+    .hero-actions{flex-wrap:nowrap; gap:8px;}
+    .hero-actions .btn{
+      flex:1 1 0; min-width:0; justify-content:center; white-space:nowrap;
+      padding:13px 8px; font-size:clamp(0.72rem, 3.5vw, 0.86rem);
+    }
+    .hero-actions .btn svg{display:none;}
   }
 </style>
 </head>
@@ -208,10 +220,11 @@
   <nav>
     <a href="index.html" class="logo"><span class="logo-mark">W</span>Wintan</a>
     <div class="nav-links">
-      <a href="#services">What we do</a>
-      <a href="#faq">Who it's for</a>
-      <a href="about.html">About us</a>
-      <a href="faq.html">Frequently Asked Questions</a>
+      <a href="index.html#services">What we do</a>
+      <a href="index.html#audience">Who it's for</a>
+      <a href="faq.html">New to this?</a>
+      <a href="giving-back.html" aria-current="page">Giving Back</a>
+      <a href="about.html">About Us</a>
     </div>
     <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary nav-cta">Say hello</a>
   </nav>
@@ -242,7 +255,7 @@
         </li>
         <li>
           <span class="tick"><svg viewBox="0 0 16 16" fill="none" stroke="#9DB8E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg></span>
-          <div><strong>Make a difference locally</strong><span class="desc">Help local business owners turn their hard work into lasting success.</span></div>
+          <div><strong>Make a difference locally</strong><span class="desc">Help the people behind the small businesses in your community compete.</span></div>
         </li>
       </ul>
 
