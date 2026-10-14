@@ -303,35 +303,35 @@
   .audience-card h3{font-size:1.45rem; margin-bottom:14px; line-height:1.25;}
   .audience-card p{color:var(--ink); opacity:0.65; font-size:0.98rem;}
   
-  /* ---------- CUSTOMER PROFILE ---------- */
-.customerprofile{background:var(--mist);}
-.customerprofile-layout{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
-.customerprofile-intro h2{font-size:clamp(1.9rem,3.2vw,2.5rem); margin-bottom:16px;}
-.customerprofile-intro p{color:var(--ink); opacity:0.65; font-size:1.02rem; margin-bottom:28px; max-width:36ch;}
-.customerprofile-list{display:flex; flex-direction:column;}
-details.customerprofile-item{border-bottom:1px solid var(--line); padding:22px 0;}
-details.customerprofile-item:first-child{border-top:1px solid var(--line);}
-details.customerprofile-item summary{
+ /* ---------- WHO IT'S FOR ---------- */
+.whoitsfor{background:var(--mist);}
+.whoitsfor-layout{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+.whoitsfor-intro h2{font-size:clamp(1.9rem,3.2vw,2.5rem); margin-bottom:16px;}
+.whoitsfor-intro p{color:var(--ink); opacity:0.65; font-size:1.02rem; margin-bottom:28px; max-width:36ch;}
+.whoitsfor-list{display:flex; flex-direction:column;}
+details.whoitsfor-item{border-bottom:1px solid var(--line); padding:22px 0;}
+details.whoitsfor-item:first-child{border-top:1px solid var(--line);}
+details.whoitsfor-item summary{
   list-style:none; cursor:pointer;
   display:flex; justify-content:space-between; align-items:center; gap:20px;
 }
-details.customerprofile-item summary::-webkit-details-marker{display:none;}
-details.customerprofile-item summary h4{
+details.whoitsfor-item summary::-webkit-details-marker{display:none;}
+details.whoitsfor-item summary h4{
   font-family:'Inter',sans-serif; font-weight:700; font-size:1.02rem; color:var(--ink);
 }
-details.customerprofile-item summary .plus{
+details.whoitsfor-item summary .plus{
   width:26px; height:26px; border-radius:50%; border:1.5px solid var(--line);
   flex-shrink:0; position:relative; transition:transform 0.25s ease, border-color 0.25s ease;
 }
-details.customerprofile-item summary .plus::before, details.customerprofile-item summary .plus::after{
+details.whoitsfor-item summary .plus::before, details.whoitsfor-item summary .plus::after{
   content:''; position:absolute; background:var(--cobalt); top:50%; left:50%;
   transform:translate(-50%,-50%);
 }
-details.customerprofile-item summary .plus::before{width:10px; height:1.5px;}
-details.customerprofile-item summary .plus::after{width:1.5px; height:10px; transition:opacity 0.2s ease;}
-details.customerprofile-item[open] summary .plus{border-color:var(--cobalt); transform:rotate(180deg);}
-details.customerprofile-item[open] summary .plus::after{opacity:0;}
-details.customerprofile-item p{color:var(--ink); opacity:0.65; font-size:0.96rem; margin-top:14px; padding-right:40px;}
+details.whoitsfor-item summary .plus::before{width:10px; height:1.5px;}
+details.whoitsfor-item summary .plus::after{width:1.5px; height:10px; transition:opacity 0.2s ease;}
+details.whoitsfor-item[open] summary .plus{border-color:var(--cobalt); transform:rotate(180deg);}
+details.whoitsfor-item[open] summary .plus::after{opacity:0;}
+details.whoitsfor-item p{color:var(--ink); opacity:0.65; font-size:0.96rem; margin-top:14px; padding-right:40px;}
 
   /* ---------- CTA ---------- */
   .cta-band{
@@ -379,7 +379,7 @@ details.customerprofile-item p{color:var(--ink); opacity:0.65; font-size:0.96rem
     .how-flow{grid-template-columns:1fr; gap:40px;}
     .how-step:not(:first-child)::before{display:none;}
     .audience-grid{grid-template-columns:1fr;}
-    .customerprofile-layout{grid-template-columns:1fr; gap:36px;}
+    .whoitsfor-layout{grid-template-columns:1fr; gap:36px;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     .nav-links{display:none;}
     .section-head h2{font-size:clamp(1.4rem, 6vw, 1.8rem); white-space:nowrap;}
@@ -404,7 +404,7 @@ details.customerprofile-item p{color:var(--ink); opacity:0.65; font-size:0.96rem
     <a href="index.html" class="logo"><span class="logo-mark">W</span>Wintan</a>
     <div class="nav-links">
       <a href="index.html#services">What we do</a>
-      <a href="index.html#customerprofile">Who it's for</a>
+      <a href="index.html#whoitsfor">Who it's for</a>
       <a href="about.html">About us</a>
       <a href="faq.html">Frequently Asked Questions</a>
     </div>
@@ -517,28 +517,28 @@ details.customerprofile-item p{color:var(--ink); opacity:0.65; font-size:0.96rem
   </div>
 </section>
 
-<!-- ================= CUSTOMER PROFILE ================= -->
-<section class="customerprofile" id="customerprofile">
-  <div class="wrap customerprofile-layout">
-    <div class="customerprofile-intro">
+<!-- ================= WHO IT'S FOR ================= -->
+<section class="whoitsfor" id="whoitsfor">
+  <div class="wrap whoitsfor-layout">
+    <div class="whoitsfor-intro">
       <span class="eyebrow">Who it's for</span>
       <h2>The small, but mighty.</h2>
       <p>We work with sole operators and small businesses, and are here to support your digital marketing journey.</p>
       <a href="#contact" class="btn btn-ghost">Contact Us</a>
     </div>
 
-    <div class="customerprofile-list">
-      <details class="customerprofile-item">
+    <div class="whoitsfor-list">
+      <details class="whoitsfor-item">
         <summary><h4>I need simple, practical marketing support that gets things moving quickly.</h4><span class="plus"></span></summary>
         <p>You might want to attract more customers, but aren’t sure how to approach it beyond word of mouth and social media. Or, you need help figuring out what’s worth investing in, where to spend your budget, and what will make the biggest difference. Or, you want just straightforward advice and simple, practical steps you can put into action quickly — without wasting time or money. We can help with you with marketing advice and strategy.</p>
       </details>
 
-      <details class="customerprofile-item">
+      <details class="whoitsfor-item">
         <summary><h4>I'm already doing some marketing but need help to manage this.</h4><span class="plus"></span></summary>
         <p>If you've engaged with marketing agencies, freelancers or other suppliers, we can help coordinate the moving parts, manage budgets and deadlines, and make sure everyone is working towards the same goals. You'll stay informed without having to manage every detail yourself.</p>
       </details>
 
-      <details class="customerprofile-item">
+      <details class="whoitsfor-item">
         <summary><h4>My business is ready for the next phase of growth.</h4><span class="plus"></span></summary>
         <p>We can help with end-to-end marketing strategy and execution. From deciding how to reach the right customers and improving your website to running digital advertising and measuring results. One marketing partner, a clear plan and ongoing improvements — so you can focus on running your business.</p>
       </details>
@@ -555,7 +555,7 @@ details.customerprofile-item p{color:var(--ink); opacity:0.65; font-size:0.96rem
     <div class="footer-col">
       <h5>Explore</h5>
       <a href="index.html#services">What we do</a>
-      <a href="index.html#customerprofile">Who it's for</a>
+      <a href="index.html#whoitsfor">Who it's for</a>
       <a href="about.html">About us</a>
       <a href="faq.html">Frequently Asked Questions</a>
     </div>
@@ -673,7 +673,7 @@ details.customerprofile-item p{color:var(--ink); opacity:0.65; font-size:0.96rem
 </script>
 
   <script>
-document.querySelectorAll('.customerprofile-list').forEach(group => {
+document.querySelectorAll('.whoitsfor-list').forEach(group => {
   group.querySelectorAll('details').forEach(d => {
     d.addEventListener('toggle', () => {
       if (!d.open) return;
@@ -681,7 +681,7 @@ document.querySelectorAll('.customerprofile-list').forEach(group => {
     });
   });
 });
-</script>  
+</script>
 
 </body>
 </html>
