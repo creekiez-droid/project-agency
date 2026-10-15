@@ -268,6 +268,18 @@
     .service-track{scroll-behavior:auto;}
   }
 
+  .nav-faq{display:none;}
+
+@media (max-width:980px){
+  .nav-faq{
+    display:inline-block;
+    margin-left:auto; margin-right:16px;
+    font-size:0.93rem; font-weight:600; color:var(--ink);
+    opacity:0.7;
+  }
+  .nav-faq:hover{opacity:1;}
+}
+
   /* ---------- HOW IT WORKS (dark, inverted) ---------- */
   .how{background:var(--ink); color:#fff;}
   .how .section-head h2, .how .section-head p{color:#fff;}
@@ -407,6 +419,7 @@ details.whoitsfor-item p{color:var(--ink); opacity:0.65; font-size:0.96rem; marg
       <a href="index.html#whoitsfor">Who it's for</a>
       <a href="about.html">About us</a>
       <a href="faq.html">Frequently Asked Questions</a>
+      <a href="faq.html" class="nav-faq">FAQ</a>
     </div>
     <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">Say hello</a>
   </nav>
