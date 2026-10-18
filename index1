@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wintan — Smarter marketing for small businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---------- TOKENS & RESET ---------- */
+  :root{
+    --ink:#0B1C3D;
+    --cobalt:#17356F;
+    --cobalt-bright:#2C57A8;
+    --sky:#9DB8E8;
+    --mist:#E8EEF9;
+    --paper:#FAFAF7;
+    --line:rgba(11,28,61,0.12);
+    --line-soft:rgba(11,28,61,0.08);
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:84px;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  section{padding:64px 0;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  :focus-visible{outline:2.5px solid var(--cobalt-bright); outline-offset:3px; border-radius:3px;}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- SHARED COMPONENTS ---------- */
+  .eyebrow{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.78rem;
+    color:var(--cobalt-bright); text-transform:uppercase; letter-spacing:0.12em;
+    display:inline-flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:22px; height:2px; background:var(--cobalt-bright); display:block;}
+
+  .section-head{max-width:640px; margin:0 auto 60px;}
+  .section-head.center{text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.6rem); margin-bottom:16px;}
+  .section-head p{color:var(--ink); opacity:0.65; font-size:1.05rem; max-width:52ch;}
+
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 28px; border-radius:10px; font-weight:700; font-size:0.96rem;
+    font-family:'Inter',sans-serif;
+    transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+  .btn-primary{background:var(--cobalt); color:#fff; box-shadow:0 10px 24px -8px rgba(23,53,111,0.55);}
+  .btn-primary:hover{background:var(--ink); transform:translateY(-2px);}
+  .btn-ghost{border:1.5px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--cobalt); background:var(--mist);}
+  .btn-onDark{border:1.5px solid rgba(255,255,255,0.35); color:#fff;}
+  .btn-onDark:hover{background:rgba(255,255,255,0.1); border-color:#fff;}
+  .btn svg{width:16px; height:16px; transition:transform 0.2s ease;}
+  .btn:hover svg{transform:translateX(3px);}
+  .btn:hover svg.icon-call{transform:none;}
+  .nav-cta{padding:11px 22px; font-size:0.88rem;}
+
+  /* swipeable, auto-scrolling track (used by the hero and services carousels) */
+  .snap-track{
+    display:flex; overflow-x:auto;
+    scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none; cursor:grab;
+  }
+  .snap-track::-webkit-scrollbar{display:none;}
+  .snap-track.is-dragging{cursor:grabbing; scroll-behavior:auto;}
+  .snap-track.is-dragging *{pointer-events:none;}
+  .snap-track img{-webkit-user-drag:none; user-select:none;}
+
+  /* carousel dots */
+  .carousel-dots{display:flex; gap:9px;}
+  .carousel-dots button{
+    width:8px; height:8px; padding:0; border-radius:50%; border:0;
+    background:var(--line); cursor:pointer; transition:background 0.2s ease, width 0.2s ease;
+  }
+  .carousel-dots button[aria-current="true"]{background:var(--cobalt-bright); width:24px; border-radius:4px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,247,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif; font-size:1.28rem; font-weight:600; color:var(--ink);
+    display:flex; align-items:center; gap:11px;
+  }
+  .logo-mark{
+    width:34px; height:34px; border-radius:8px;
+    background:var(--cobalt); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;
+    flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{font-size:0.93rem; font-weight:600; color:var(--ink); opacity:0.7; transition:opacity 0.2s ease;}
+  .nav-links a:hover{opacity:1;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:120px 32px 0;
+    background:var(--paper);
+  }
+  .hero-grid{
+    max-width:1180px; margin:0 auto; padding-bottom:64px;
+    display:grid; grid-template-columns:1.05fr 0.85fr; gap:56px; align-items:center;
+  }
+  .hero h1{font-size:clamp(2.5rem, 4.6vw, 3.9rem); line-height:1.06; margin-bottom:24px;}
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--cobalt);
+    background:linear-gradient(180deg, transparent 62%, var(--mist) 62%);
+    padding:0 2px;
+  }
+  .hero p.lede{font-size:1.15rem; color:var(--ink); opacity:0.68; max-width:46ch; margin-bottom:36px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:30px;}
+  .hero-faq{display:none;}
+
+  /* hero image carousel (square) */
+  .hero-carousel{
+    position:relative;
+    aspect-ratio:1 / 1;
+    border-radius:22px;
+    box-shadow:0 40px 80px -30px rgba(11,28,61,0.45);
+    transform:rotate(1.5deg);
+  }
+  .hero-carousel::before{
+    content:''; position:absolute; inset:-14px; border:1.5px solid var(--line);
+    border-radius:30px; z-index:-1; transform:rotate(-3deg);
+  }
+  .hero-track{height:100%; border-radius:22px; background:var(--ink);}
+  .hero-slide{flex:0 0 100%; height:100%; scroll-snap-align:center;}
+  .hero-slide img{width:100%; height:100%; object-fit:cover;}
+  .hero-carousel .carousel-dots{
+    position:absolute; left:50%; bottom:18px; transform:translateX(-50%); z-index:2;
+  }
+  .hero-carousel .carousel-dots button{background:rgba(255,255,255,0.55);}
+  .hero-carousel .carousel-dots button[aria-current="true"]{background:#fff;}
+
+  /* ---------- SERVICES CAROUSEL ---------- */
+  .services{background:var(--paper);}
+  .service-carousel{position:relative;}
+  .service-track{
+    gap:1px; background:var(--line);
+    border:1px solid var(--line); border-radius:20px;
+  }
+  .service-card{
+    position:relative;
+    flex:0 0 100%; scroll-snap-align:center;
+    min-height:350px;
+    overflow:hidden;
+    display:block;
+  }
+  /* background image fills the whole card */
+  .service-card .shot{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    background:var(--mist);
+  }
+  .service-card .shot img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.5s ease;
+  }
+  .service-card:hover .shot img{transform:scale(1.04);}
+  /* readability scrim under the text */
+  .service-card::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(11,28,61,0.82) 0%, rgba(11,28,61,0.35) 45%, rgba(11,28,61,0) 75%);
+    pointer-events:none;
+  }
+  /* heading + subheading, bottom-left */
+  .service-card .copy{
+    position:absolute; left:0; bottom:0; z-index:2;
+    padding:24px 28px;
+    max-width:480px;
+    text-align:left;
+  }
+  .service-card .num{
+    font-family:'Fraunces',serif; font-weight:600; font-size:0.85rem; color:var(--sky);
+    display:block; margin-bottom:8px;
+  }
+  .service-card h3{font-size:1.5rem; margin:0 0 8px; line-height:1.25; color:#fff;}
+  .service-card p{color:#fff; opacity:0.82; font-size:1rem; margin:0 0 12px; max-width:46ch;}
+
+  /* controls */
+  .carousel-nav{display:flex; align-items:center; justify-content:center; gap:22px; margin-top:24px;}
+  .carousel-nav button{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--line);
+    background:var(--paper); color:var(--cobalt); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background 0.2s ease, border-color 0.2s ease;
+  }
+  .carousel-nav button:hover:not(:disabled){background:var(--mist); border-color:var(--cobalt-bright);}
+  .carousel-nav button:disabled{opacity:0.35; cursor:default;}
+  .carousel-nav button:focus-visible{outline:2px solid var(--cobalt-bright); outline-offset:3px;}
+
+  /* ---------- WHO IT'S FOR ---------- */
+  .whoitsfor{background:var(--mist);}
+  .whoitsfor-layout{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+  .whoitsfor-intro h2{font-size:clamp(1.9rem, 3.2vw, 2.5rem); margin-bottom:16px;}
+  .whoitsfor-intro p{color:var(--ink); opacity:0.65; font-size:1.02rem; margin-bottom:28px; max-width:36ch;}
+  .whoitsfor-list{display:flex; flex-direction:column;}
+  details.whoitsfor-item{border-bottom:1px solid var(--line); padding:22px 0;}
+  details.whoitsfor-item:first-child{border-top:1px solid var(--line);}
+  details.whoitsfor-item summary{
+    list-style:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+  }
+  details.whoitsfor-item summary::-webkit-details-marker{display:none;}
+  details.whoitsfor-item summary h4{font-family:'Inter',sans-serif; font-weight:700; font-size:1.02rem; color:var(--ink);}
+  details.whoitsfor-item summary .plus{
+    width:26px; height:26px; border-radius:50%; border:1.5px solid var(--line);
+    flex-shrink:0; position:relative; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  details.whoitsfor-item summary .plus::before,
+  details.whoitsfor-item summary .plus::after{
+    content:''; position:absolute; background:var(--cobalt); top:50%; left:50%;
+    transform:translate(-50%,-50%);
+  }
+  details.whoitsfor-item summary .plus::before{width:10px; height:1.5px;}
+  details.whoitsfor-item summary .plus::after{width:1.5px; height:10px; transition:opacity 0.2s ease;}
+  details.whoitsfor-item[open] summary .plus{border-color:var(--cobalt); transform:rotate(180deg);}
+  details.whoitsfor-item[open] summary .plus::after{opacity:0;}
+  details.whoitsfor-item p{color:var(--ink); opacity:0.65; font-size:0.96rem; margin-top:14px; padding-right:40px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:#fff;}
+  .footer-grid{
+    padding:70px 32px 40px; display:grid; grid-template-columns:1.4fr 1fr 1fr;
+    gap:50px; max-width:1180px; margin:0 auto;
+  }
+  footer .logo{color:#fff;}
+  footer .logo-mark{background:var(--cobalt-bright);}
+  footer .foot-tagline{color:#fff; opacity:0.55; font-size:0.94rem; margin-top:16px;}
+  .footer-col h5{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--sky); font-weight:700; margin-bottom:18px;}
+  .footer-col a{display:block; color:#fff; opacity:0.6; font-size:0.92rem; margin-bottom:12px; transition:opacity 0.2s ease;}
+  .footer-col a:hover{opacity:1;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (min-width:981px) and (max-width:1200px){
+    .hero{padding-top:80px;}
+  }
+
+  @media (max-width:980px){
+    .hero{padding-top:64px;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-faq{display:inline-flex;}
+    .hero-carousel{transform:none; max-width:440px;}
+    .whoitsfor-layout{grid-template-columns:1fr; gap:36px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .section-head h2{font-size:clamp(1.4rem, 6vw, 1.8rem); white-space:nowrap;}
+  }
+
+  @media (max-width:760px){
+    .service-card{min-height:280px;}
+    .service-card .copy{padding:20px 22px; max-width:100%;}
+  }
+
+  @media (max-width:560px){
+    .footer-grid{grid-template-columns:1fr; gap:36px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .service-card:hover .shot img{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <nav>
+    <a href="index.html" class="logo"><span class="logo-mark">W</span>Wintan</a>
+    <div class="nav-links">
+      <a href="index.html#services">What we do</a>
+      <a href="index.html#whoitsfor">Who it's for</a>
+      <a href="about.html">About us</a>
+      <a href="faq.html">Frequently Asked Questions</a>
+    </div>
+    <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">Say hello</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Omnichannel advertising, made simple</div>
+      <h1>Smarter Marketing. <em>Designed for Small Businesses.</em></h1>
+      <p class="lede">We get your business seen by the right customers at the right time, across the channels they use every day, beyond social media.</p>
+      <div class="hero-actions">
+        <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Need advice? Let's chat
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="faq.html" class="btn btn-ghost hero-faq">Frequently Asked Questions
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero image carousel: to add a photo, copy one <div class="hero-slide"> block.
+         Dots and the 5-second auto-scroll update automatically. -->
+    <div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Photo carousel">
+      <div class="snap-track hero-track" id="heroTrack" tabindex="0" role="group">
+        <div class="hero-slide"><img src="hero-1.jpg" alt="Describe photo 1"></div>
+        <div class="hero-slide"><img src="hero-2.jpg" alt="Describe photo 2"></div>
+        <div class="hero-slide"><img src="hero-3.jpg" alt="Describe photo 3"></div>
+      </div>
+      <div class="carousel-dots" id="heroDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">What we do</span>
+      <h2>Three simple ways we can help.</h2>
+    </div>
+
+    <div class="service-carousel">
+      <div class="snap-track service-track" id="serviceTrack" tabindex="0" role="group" aria-label="Services carousel">
+
+        <article class="service-card">
+          <div class="shot"><img src="digitalstrategy.jpg" alt="" loading="lazy"></div>
+          <div class="copy">
+            <span class="num">01</span>
+            <h3>Digital Strategy</h3>
+            <p>We can help you understand your target audience, where to spend, and how much. A simple plan, made just for your business. Your investment matters.</p>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="shot"><img src="digitaladvertising.jpg" alt="" loading="lazy"></div>
+          <div class="copy">
+            <span class="num">02</span>
+            <h3>Digital Advertising</h3>
+            <p>We can run your ads across all digital media channels — so you reach people while they're browsing, watching, or listening, wherever that happens to be.</p>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="shot"><img src="marketingadvice.jpg" alt="" loading="lazy"></div>
+          <div class="copy">
+            <span class="num">03</span>
+            <h3>Need Marketing Advice?</h3>
+            <p>We can provide strategic advice, agency coordination, and independent guidance to help you get more from your marketing investment.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="carousel-nav">
+        <button type="button" id="servicePrev" aria-label="Previous service">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="carousel-dots" id="serviceDots"></div>
+        <button type="button" id="serviceNext" aria-label="Next service">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO IT'S FOR ================= -->
+<section class="whoitsfor" id="whoitsfor">
+  <div class="wrap whoitsfor-layout">
+    <div class="whoitsfor-intro">
+      <span class="eyebrow">Who it's for</span>
+      <h2>The small, but mighty.</h2>
+      <p>We work with sole operators and small businesses, and are here to support your digital marketing journey.</p>
+      <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">Contact Us</a>
+    </div>
+
+    <div class="whoitsfor-list">
+      <details class="whoitsfor-item">
+        <summary><h4>I need simple, practical marketing support that gets things moving quickly.</h4><span class="plus"></span></summary>
+        <p>You might want to attract more customers, but aren’t sure how to approach it beyond word of mouth and social media. Or, you need help figuring out what’s worth investing in, where to spend your budget, and what will make the biggest difference. Or, you want just straightforward advice and simple, practical steps you can put into action quickly — without wasting time or money. We can help with you with marketing advice and strategy.</p>
+      </details>
+
+      <details class="whoitsfor-item">
+        <summary><h4>I'm already doing some marketing but need help to manage this.</h4><span class="plus"></span></summary>
+        <p>If you've engaged with marketing agencies, freelancers or other suppliers, we can help coordinate the moving parts, manage budgets and deadlines, and make sure everyone is working towards the same goals. You'll stay informed without having to manage every detail yourself.</p>
+      </details>
+
+      <details class="whoitsfor-item">
+        <summary><h4>My business is ready for the next phase of growth.</h4><span class="plus"></span></summary>
+        <p>We can help with end-to-end marketing strategy and execution. From deciding how to reach the right customers and improving your website to running digital advertising and measuring results. One marketing partner, a clear plan and ongoing improvements — so you can focus on running your business.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo"><span class="logo-mark">W</span>Wintan</div>
+      <p class="foot-tagline">Leveling the playing field for small businesses.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <a href="index.html#services">What we do</a>
+      <a href="index.html#whoitsfor">Who it's for</a>
+      <a href="about.html">About us</a>
+      <a href="faq.html">Frequently Asked Questions</a>
+    </div>
+    <div class="footer-col">
+      <h5>Get in touch</h5>
+      <a href="https://form.typeform.com/to/RS7um36k" target="_blank" rel="noopener noreferrer">Contact us</a>
+      <a href="givingback.html">Want to give back?</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Auto-scrolling carousel (hero + services) ---------- */
+function initCarousel({ track, dotsBox, prev, next, delay = 5000 }){
+  const cards = Array.from(track.children);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index = 0;
+  let timer = null;
+
+  // dots
+  cards.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    b.addEventListener('click', () => { goTo(i); restart(); });
+    dotsBox.appendChild(b);
+  });
+  const dots = Array.from(dotsBox.children);
+
+  function sync(){
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+  }
+
+  function goTo(i){
+    index = Math.max(0, Math.min(cards.length - 1, i));
+    track.scrollTo({ left: cards[index].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    sync();
+  }
+
+  // autoplay
+  function play(){
+    if (reduceMotion || timer) return;
+    timer = setInterval(() => goTo(index >= cards.length - 1 ? 0 : index + 1), delay);
+  }
+  function pause(){
+    clearInterval(timer);
+    timer = null;
+  }
+  function restart(){ pause(); play(); }
+
+  // arrow buttons (optional)
+  if (prev) prev.addEventListener('click', () => { goTo(index === 0 ? cards.length - 1 : index - 1); restart(); });
+  if (next) next.addEventListener('click', () => { goTo(index === cards.length - 1 ? 0 : index + 1); restart(); });
+
+  // keyboard
+  track.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft'){ e.preventDefault(); goTo(index - 1); restart(); }
+    if (e.key === 'ArrowRight'){ e.preventDefault(); goTo(index + 1); restart(); }
+  });
+
+  // keep dots in step with touch / trackpad swiping
+  let tick;
+  track.addEventListener('scroll', () => {
+    clearTimeout(tick);
+    tick = setTimeout(() => {
+      const mid = track.scrollLeft + track.clientWidth / 2;
+      let closest = 0, best = Infinity;
+      cards.forEach((c, i) => {
+        const d = Math.abs((c.offsetLeft - track.offsetLeft) + c.offsetWidth / 2 - mid);
+        if (d < best){ best = d; closest = i; }
+      });
+      index = closest;
+      sync();
+    }, 90);
+  });
+
+  // click-and-drag for mouse users
+  let down = false, startX = 0, startScroll = 0;
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'touch') return;
+    down = true; startX = e.clientX; startScroll = track.scrollLeft;
+    track.classList.add('is-dragging');
+    track.setPointerCapture(e.pointerId);
+    pause();
+  });
+  track.addEventListener('pointermove', e => {
+    if (!down) return;
+    track.scrollLeft = startScroll - (e.clientX - startX);
+  });
+  ['pointerup', 'pointercancel'].forEach(ev => track.addEventListener(ev, () => {
+    if (!down) return;
+    down = false;
+    track.classList.remove('is-dragging');
+    goTo(index);
+    play();
+  }));
+
+  // pause while the person is looking at or using it
+  track.addEventListener('pointerenter', pause);
+  track.addEventListener('pointerleave', play);
+  track.addEventListener('focusin', pause);
+  track.addEventListener('focusout', play);
+  document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
+
+  sync();
+  play();
+}
+
+initCarousel({
+  track:   document.getElementById('heroTrack'),
+  dotsBox: document.getElementById('heroDots')
+});
+
+initCarousel({
+  track:   document.getElementById('serviceTrack'),
+  dotsBox: document.getElementById('serviceDots'),
+  prev:    document.getElementById('servicePrev'),
+  next:    document.getElementById('serviceNext')
+});
+
+/* ---------- Who it's for: only one accordion item open at a time ---------- */
+document.querySelectorAll('.whoitsfor-list').forEach(group => {
+  group.querySelectorAll('details').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (!d.open) return;
+      group.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
+    });
+  });
+});
+</script>
+
+</body>
+</html>
