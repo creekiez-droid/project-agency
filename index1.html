@@ -86,14 +86,6 @@
   .snap-track.is-dragging *{pointer-events:none;}
   .snap-track img{-webkit-user-drag:none; user-select:none;}
 
-  /* carousel dots */
-  .carousel-dots{display:flex; gap:9px;}
-  .carousel-dots button{
-    width:8px; height:8px; padding:0; border-radius:50%; border:0;
-    background:var(--line); cursor:pointer; transition:background 0.2s ease, width 0.2s ease;
-  }
-  .carousel-dots button[aria-current="true"]{background:var(--cobalt-bright); width:24px; border-radius:4px;}
-
   /* ---------- NAV ---------- */
   header{
     position:sticky; top:0; z-index:50;
@@ -218,6 +210,14 @@
   .carousel-nav button:hover:not(:disabled){background:var(--mist); border-color:var(--cobalt-bright);}
   .carousel-nav button:disabled{opacity:0.35; cursor:default;}
   .carousel-nav button:focus-visible{outline:2px solid var(--cobalt-bright); outline-offset:3px;}
+
+  /* dots (must stay after the .carousel-nav button rules so they keep their small size) */
+  .carousel-dots{display:flex; gap:9px;}
+  .carousel-dots button{
+    width:8px; height:8px; padding:0; border-radius:50%; border:0;
+    background:var(--line); cursor:pointer; transition:background 0.2s ease, width 0.2s ease;
+  }
+  .carousel-dots button[aria-current="true"]{background:var(--cobalt-bright); width:24px; border-radius:4px;}
 
   /* ---------- WHO IT'S FOR ---------- */
   .whoitsfor{background:var(--mist);}
@@ -380,11 +380,11 @@
 
       <div class="carousel-nav">
         <button type="button" id="servicePrev" aria-label="Previous service">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
         </button>
         <div class="carousel-dots" id="serviceDots"></div>
         <button type="button" id="serviceNext" aria-label="Next service">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
