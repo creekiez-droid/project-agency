@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Wintan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---------- TOKENS & RESET ---------- */
+  :root{
+    --ink:#0B1C3D;
+    --cobalt:#17356F;
+    --cobalt-bright:#2C57A8;
+    --sky:#9DB8E8;
+    --mist:#E8EEF9;
+    --paper:#FAFAF7;
+    --line:rgba(11,28,61,0.12);
+    --line-soft:rgba(11,28,61,0.08);
+
+    /* HEADSHOT CONTROLS — change these to resize / reshape the team photos */
+    --headshot-size:96px;      /* width and height of each photo */
+    --headshot-radius:10px;    /* 10px = soft square, 50% = circle, 0 = sharp square */
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  section{padding:64px 0;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  :focus-visible{outline:2.5px solid var(--cobalt-bright); outline-offset:3px; border-radius:3px;}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- SHARED COMPONENTS ---------- */
+  .eyebrow{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.78rem;
+    color:var(--cobalt-bright); text-transform:uppercase; letter-spacing:0.12em;
+    display:inline-flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:22px; height:2px; background:var(--cobalt-bright); display:block;}
+  .page-hero-inner .eyebrow,
+  .section-head.center .eyebrow{justify-content:center;}
+
+  .section-head{max-width:640px; margin:0 auto 60px;}
+  .section-head.center{text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.6rem); margin-bottom:16px;}
+  .section-head p{color:var(--ink); opacity:0.65; font-size:1.05rem; max-width:52ch;}
+
+  /* buttons */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 28px; border-radius:10px; font-weight:700; font-size:0.96rem;
+    font-family:'Inter',sans-serif;
+    transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+  .btn-primary{background:var(--cobalt); color:#fff; box-shadow:0 10px 24px -8px rgba(23,53,111,0.55);}
+  .btn-primary:hover{background:var(--ink); transform:translateY(-2px);}
+  .btn-ghost{border:1.5px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--cobalt); background:var(--mist);}
+  .btn-onDark{border:1.5px solid rgba(255,255,255,0.35); color:#fff;}
+  .btn-onDark:hover{background:rgba(255,255,255,0.1); border-color:#fff;}
+  .btn svg{width:16px; height:16px; transition:transform 0.2s ease;}
+  .btn:hover svg{transform:translateX(3px);}
+  .nav-cta{padding:11px 22px; font-size:0.88rem;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,247,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif; font-size:1.28rem; font-weight:600; color:var(--ink);
+    display:flex; align-items:center; gap:11px;
+  }
+  .logo-mark{
+    width:34px; height:34px; border-radius:8px;
+    background:var(--cobalt); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;
+    flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{font-size:0.93rem; font-weight:600; color:var(--ink); opacity:0.7; transition:opacity 0.2s ease;}
+  .nav-links a:hover{opacity:1;}
+  .nav-links a.active{opacity:1; position:relative;}
+  .nav-links a.active::after{
+    content:''; position:absolute; left:0; right:0; bottom:-19px; height:2px; background:var(--cobalt);
+  }
+
+  /* ---------- PAGE HERO ---------- */
+  .page-hero{padding:76px 32px 64px; background:var(--paper);}
+  .page-hero-inner{max-width:800px; margin:0 auto; text-align:center;}
+  .page-hero h1{font-size:clamp(2.4rem, 4.6vw, 3.6rem); line-height:1.08; margin-bottom:22px;}
+  .page-hero h1 em{
+    font-style:italic; font-weight:500; color:var(--cobalt);
+    background:linear-gradient(180deg, transparent 62%, var(--mist) 62%);
+    padding:0 2px;
+  }
+  .page-hero p.lede{font-size:1.13rem; color:var(--ink); opacity:0.65; max-width:52ch; margin:0 auto 26px;}
+
+  /* ---------- STORY ---------- */
+  .story{background:var(--mist);}
+  .story-grid{display:grid; grid-template-columns:1fr 0.85fr; gap:64px; align-items:start;}
+  .story-copy h2{font-size:clamp(1.9rem, 3.2vw, 2.5rem); margin-bottom:22px;}
+  .story-copy p{color:var(--ink); opacity:0.68; font-size:1.03rem; margin-bottom:18px; max-width:52ch;}
+
+  .quote-card{
+    background:var(--ink); border-radius:22px; padding:40px 34px;
+    box-shadow:0 40px 80px -30px rgba(11,28,61,0.45);
+    transform:rotate(-1.5deg); position:relative; color:#fff;
+  }
+  .quote-card::before{
+    content:''; position:absolute; inset:-14px; border:1.5px solid var(--line);
+    border-radius:30px; z-index:-1; transform:rotate(3deg);
+  }
+  .quote-card .mark{font-family:'Fraunces',serif; font-size:3rem; color:var(--sky); line-height:1; margin-bottom:10px; display:block;}
+  .quote-card blockquote{font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:1.3rem; line-height:1.45; margin-bottom:28px;}
+  .quote-card .attrib{display:flex; align-items:center; gap:12px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.14);}
+  .quote-card .attrib .avatar{
+    width:40px; height:40px; border-radius:8px; background:var(--cobalt-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; flex-shrink:0;
+  }
+  .quote-card .attrib .who{font-size:0.86rem; color:#fff;}
+  .quote-card .attrib .who span{display:block; opacity:0.55; font-size:0.78rem; margin-top:2px;}
+
+  /* ---------- TEAM ---------- */
+  .team-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:26px;}
+  .team-card{
+    background:var(--paper); border:1px solid var(--line-soft); border-radius:20px;
+    padding:34px 30px; flex:0 1 450px;
+  }
+  .team-card .headshot{
+    width:var(--headshot-size); height:var(--headshot-size);
+    border-radius:var(--headshot-radius);
+    object-fit:cover; object-position:center top;
+    background:var(--mist);
+    margin-bottom:22px;
+  }
+  .team-card h3{font-size:1.12rem; margin-bottom:3px;}
+  .team-card .role{display:block; font-size:0.82rem; color:var(--cobalt-bright); font-weight:700; margin-bottom:14px;}
+  .team-card p{color:var(--ink); opacity:0.65; font-size:0.92rem;}
+  .team-card .social{margin-top:26px;}
+  .team-card .social img{width:20px; height:auto;}
+
+  /* ---------- BELIEFS (accordion) ---------- */
+  .beliefs .faq-list{display:flex; flex-direction:column; max-width:700px; margin:0 auto;}
+  details.faq-item{border-bottom:1px solid var(--line); padding:22px 0;}
+  details.faq-item:first-child{border-top:1px solid var(--line);}
+  details.faq-item summary{
+    list-style:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+  }
+  details.faq-item summary::-webkit-details-marker{display:none;}
+  details.faq-item summary h4{font-family:'Inter',sans-serif; font-weight:700; font-size:1.02rem; color:var(--ink);}
+  details.faq-item summary .plus{
+    width:26px; height:26px; border-radius:50%; border:1.5px solid var(--line);
+    flex-shrink:0; position:relative; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  details.faq-item summary .plus::before,
+  details.faq-item summary .plus::after{
+    content:''; position:absolute; background:var(--cobalt); top:50%; left:50%;
+    transform:translate(-50%,-50%);
+  }
+  details.faq-item summary .plus::before{width:10px; height:1.5px;}
+  details.faq-item summary .plus::after{width:1.5px; height:10px; transition:opacity 0.2s ease;}
+  details.faq-item[open] summary .plus{border-color:var(--cobalt); transform:rotate(180deg);}
+  details.faq-item[open] summary .plus::after{opacity:0;}
+  details.faq-item p{color:var(--ink); opacity:0.65; font-size:0.96rem; margin-top:14px; padding-right:40px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:#fff; margin-top:110px;}
+  .footer-grid{
+    padding:70px 32px 40px; display:grid; grid-template-columns:1.4fr 1fr 1fr;
+    gap:50px; max-width:1180px; margin:0 auto;
+  }
+  footer .logo{color:#fff;}
+  footer .logo-mark{background:var(--cobalt-bright);}
+  footer .foot-tagline{color:#fff; opacity:0.55; font-size:0.94rem; margin-top:16px;}
+  .footer-col h5{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--sky); font-weight:700; margin-bottom:18px;}
+  .footer-col a{display:block; color:#fff; opacity:0.6; font-size:0.92rem; margin-bottom:12px; transition:opacity 0.2s ease;}
+  .footer-col a:hover{opacity:1;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .story-grid{grid-template-columns:1fr; gap:44px;}
+    .quote-card{transform:none; max-width:460px; margin:0 auto;}
+    .nav-links{display:none;}
+  }
+
+  @media (max-width:560px){
+    .footer-grid{grid-template-columns:1fr; gap:36px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <nav>
+    <a href="index.html" class="logo"><span class="logo-mark">W</span>Wintan</a>
+    <div class="nav-links">
+      <a href="index.html#services">What we do</a>
+      <a href="index.html#whoitsfor">Who it's for</a>
+      <a href="about.html">About us</a>
+      <a href="faq.html">Frequently asked questions</a>
+    </div>
+    <a href="https://form.typeform.com/to/RS7um36k" class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">Say hello</a>
+  </nav>
+</header>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow">About Us</div>
+    <h1>We are <em>Wintan.</em></h1>
+    <p class="lede">Our mission is to level the playing field for small businesses.</p>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="story" id="faq">
+  <div class="wrap story-grid">
+    <div class="story-copy">
+      <span class="eyebrow">Our story</span>
+      <h2>We believe every business should have an equal opportunity to compete,<br>no matter its size.</h2>
+      <p>We started Wintan consulting because small businesses are often given the same marketing playbook as big brands — even when it doesn't fit.</p>
+      <p>Wintan provides digital marketing advice to small business owners who want to be seen beyond social media — without hiring an in-house team or signing away control of their media investment.</p>
+    </div>
+
+    <div class="quote-card">
+      <span class="mark">&ldquo;</span>
+      <blockquote>We're on a mission to democratise marketing.</blockquote>
+      <div class="attrib">
+        <span class="avatar">W</span>
+        <span class="who">Wintan<span>Marketing Consulting</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM =================
+     Headshot size: change --headshot-size at the top of the stylesheet to resize both photos.
+     To size one person differently, add style="--headshot-size:140px" to that <img>. -->
+<section class="team">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">The People</span>
+      <h2>Meet your two advisors.</h2>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <img class="headshot" src="Rachel.png" alt="Rachel Tan">
+        <h3>Rachel Tan</h3>
+        <span class="role">Managing Partner</span>
+        <p>Rachel brings 15+ years of experience across digital advertising, adtech and client operations, with a career spanning Blis Media, News Corp and LinkedIn. She combines deep expertise in programmatic advertising and digital media with a commercial and client-first mindset. Rachel loves a good optimisation strategy, is unapologetically data-driven, and enjoys turning complex challenges into measurable growth.</p>
+        <p class="social"><a href="https://www.linkedin.com/in/racheltanlinkedin" target="_blank" rel="noopener noreferrer"><img src="LI-In-Bug.png" alt="LinkedIn Profile"></a></p>
+      </div>
+
+      <div class="team-card">
+        <img class="headshot" src="Michael.png" alt="Dr Michael Lwin">
+        <h3>Dr Michael Lwin</h3>
+        <span class="role">Managing Partner</span>
+        <p>Michael specialises in marketing, consumer behaviour, digital strategy and research. With a PhD in Marketing from Curtin University and experience at Curtin and Western Sydney University, Michael brings academic rigour to agency and consulting — without making everything feel like a research paper. Michael's specialty is turning consumer insight and big ideas into practical strategies that makes business sense.</p>
+        <p class="social"><a href="https://www.linkedin.com/in/michael-lwin-2aa05b49/" target="_blank" rel="noopener noreferrer"><img src="LI-In-Bug.png" alt="LinkedIn Profile"></a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= BELIEFS ================= -->
+<section class="beliefs">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">What we believe</span>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary><h4>Marketing support, when you need it</h4><span class="plus"></span></summary>
+        <p>We care about your business and are here whenever you need an independent perspective, advice, or a helping hand.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>Right for you, or not at all</h4><span class="plus"></span></summary>
+        <p>We'll only recommend what we believe will genuinely help your business. If it's not the right fit, we'll tell you upfront — before you spend a dollar.</p>
+      </details>
+      <details class="faq-item">
+        <summary><h4>Plain language, always</h4><span class="plus"></span></summary>
+        <p>You should never need a glossary to read your own marketing plan.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo"><span class="logo-mark">W</span>Wintan</div>
+      <p class="foot-tagline">Leveling the playing field for small businesses.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <a href="index.html#services">What we do</a>
+      <a href="index.html#whoitsfor">Who it's for</a>
+      <a href="about.html">About us</a>
+      <a href="faq.html">Frequently asked questions</a>
+    </div>
+    <div class="footer-col">
+      <h5>Get in touch</h5>
+      <a href="https://form.typeform.com/to/RS7um36k" target="_blank" rel="noopener noreferrer">Contact us</a>
+      <a href="givingback.html">Want to give back?</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
